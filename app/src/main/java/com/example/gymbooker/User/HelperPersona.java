@@ -78,10 +78,6 @@ public class HelperPersona {
         return null;
     }
 
-    private class RetroFit {
-    }
-
-
     public HelperPersona() {
     }
 
