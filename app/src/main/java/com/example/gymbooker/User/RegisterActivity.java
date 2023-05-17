@@ -22,6 +22,9 @@ import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.R;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
+import com.google.android.gms.auth.api.identity.SignInClient;
+import com.google.android.gms.auth.api.identity.SignInCredential;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -32,6 +35,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.example.gymbooker.Tokens.HelperToken;
 import com.example.gymbooker.Tokens.Tokens;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -44,6 +50,11 @@ public class RegisterActivity extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
 
     private FirebaseAuth mAuth;
+    private BeginSignInRequest signInRequest;
+
+    public RegisterActivity() throws ApiException {
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -51,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (preferences.getInt("logged",0)==1){
             Intent i=new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(i);
+
             finish();
         }
 
@@ -73,6 +85,23 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
+
+    private void updateUI(FirebaseUser currentUser) {
+    }
+
+    public void onClickSignInGoogle(View view){
+        signInRequest = BeginSignInRequest.builder()
+                .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                        .setSupported(true)
+                        // Your server's client ID, not your Android client ID.
+                        .setServerClientId(getString(R.string.default_web_client_id))
+                        // Only show accounts previously used to sign in.
+                        .setFilterByAuthorizedAccounts(true)
+                        .build())
+                .build();
+        mAuth = FirebaseAuth.getInstance();
+    }
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -80,13 +109,10 @@ public class RegisterActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-    private void updateUI(FirebaseUser currentUser) {
-    }
-
 
     public void onClickGuardar(View view) {
 
-        if(verificar()) {
+        if(verificarVoid() && verificar()) {
 
             HelperPersona bInstance = new HelperPersona();
             User u = new User();
@@ -98,11 +124,23 @@ public class RegisterActivity extends AppCompatActivity {
             String t1 = getIntent().getStringExtra("txtToken");
 
 
+
+
+        HelperPersona bInstance = new HelperPersona();
+        User u = new User();
+        u.setNombre(txtnombre.getText().toString());
+        u.setTelefono(txttelefono.getText().toString());
+        u.setCorreo(txtcorreo.getText().toString());
+        u.setCedula(txtcedula.getText().toString());
+        u.setFechaNacimiento(txtfnacimiento.getText().toString());
+        String t1=getIntent().getStringExtra("txtToken");
+
             HelperToken helperToken = new HelperToken();
             Tokens token1 = helperToken.getTokenByToken(t1);
             if (preferences.getString("user", "").equals("admin")) {
                 u.setToken(null);
                 //todo implementar aqui el Registro en google
+
 
             BeginSignInRequest.Builder signInRequest;
             signInRequest = BeginSignInRequest.builder()
@@ -164,7 +202,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
         }
     }
-    private boolean verificar(){
+    private boolean verificarVoid(){
         if(
         esNulo((EditText) txtnombre) ||
         esNulo((EditText) txtfnacimiento) ||
@@ -178,9 +216,48 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
 
 
+    private void verificar(User u) {
+        
+        if (!esNumeroDeTelefonoValido(u.getTelefono())) {
+            // El número de teléfono no cumple con los requisitos
+            // Realiza las acciones necesarias en caso de validación fallida
+        }
+
+        if (!esCorreoValido(u.getCorreo())) {
+            // El correo electrónico no cumple con los requisitos
+            // Realiza las acciones necesarias en caso de validación fallida
+        }
+
+        if (!esNumeroDeCedulaValido(u.getCedula())) {
+            // La cédula no cumple con los requisitos
+            // Realiza las acciones necesarias en caso de validación fallida
+        }
+
+        if (!esFechaValida(u.getFechaNacimiento())) {
+            // La fecha de nacimiento no cumple con los requisitos
+            // Realiza las acciones necesarias en caso de validación fallida
+        }
+
+        // Todas las validaciones han sido exitosas
+        // Realiza las acciones necesarias en caso de validación exitosa
     }
 
-    private boolean esNulo(EditText et) {
+    private boolean esNumeroDeTelefonoValido(String telefono) {
+        // Verifica que el número de teléfono tenga máximo 10 caracteres y sean solo números
+        return telefono.matches("\\d{1,10}");
+    }
+
+    private boolean esCorreoValido(String correo) {
+        // Verifica que el correo electrónico tenga un formato válido
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+    }
+
+    private boolean esNumeroDeCedulaValido(String cedula) {
+        // Verifica que la cédula sean solo números
+        return cedula.matches("\\d+");
+    }
+
+        private boolean esNulo(EditText et) {
         if(et.getText().toString().isEmpty()){
             et.setError("Complete este campo");
             return false;
@@ -189,4 +266,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
+
+
 }
