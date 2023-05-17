@@ -37,6 +37,7 @@ public class AgendarActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_agendar);
 
+
         txtrutina = findViewById(R.id.txtrutina);
         txthora1 = findViewById(R.id.txthora1);
         txthora2 = findViewById(R.id.txthora2);
