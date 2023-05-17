@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">GymBooker</string>
+    <string name="fecha">Elija la fecha</string>
+    <string name="dd">dd/mm/aaaa</string>
+    <string name="hora">Elija la Hora</string>
+    <string name="hh">00:00</string>
+    <string name="barra">-</string>
+    <string name="Agendar">Agendar</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="iniciarsesion">Iniciar Sesión</string>
+    <string name="password">Contraseña</string>
+    <string name="user">Usuario</string>
+    <string name="misentrenamientos">Mis Entrenamientos</string>
+    <string name="historial">Historial</string>
+    <string name="configuraciones">Configuraciones</string>
+    <string name="registro">Registro</string>
+    <string name="correo">Correo</string>
+    <string name="nombre">Nombre:</string>
+    <string name="telefono">Telefono:</string>
+    <string name="basico">Basico</string>
+    <string name="premium">Premium</string>
+    <string name="continuar">Continuar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="elija_un_plan">Elija un Plan</string>
+    <string name="rutina">Rutina:</string>
+    <string name="dd_mm_aaaa">dd/mm/aaaa</string>
+    <string name="agenda_tu_entrenamiento">Agenda tu entrenamiento</string>
+    <string name="vacio" />
+    <string name="mis_reservas">MIS RESERVAS</string>
+    <string name="elegir">Elija una opcion</string>
+    <string name="Cedula">Cedula:</string>
+    <string name="InformacionUsuarios">Informacion Usuarios</string>
+    <string name="TotalRaservas">Total Raservas:</string>
+    <string name="ExpiracionToken">Expiracion Token:</string>
+    <string name="Duracion">Duracion:</string>
+    <string name="HoraIngreso">Hora Ingreso:</string>
+    <string name="Fecha">Fecha</string>
+    <string name="FechaNacimiento">Fecha Nacimiento</string>
+    <string name="Token">Token:</string>
+    <string name="ver_historial">Ver Historial</string>
+    <string name="ver_reservas">Ver Reservas</string>
+    <string name="ver_informacion">Ver Informacion</string>
+    <string name="ingresar_token">Ingrese Token</string>
+
+    <string name="token1">¿Que es Token?</string>
+    <string name="explicacion_token">Es un codigo de acceso generado por el Administrador  que permite ingresar al sistema del Gym</string>
+    <string name="usuarios">Ver Usuarios</string>
+    <string name="generar">Generar Token</string>
+    <string name="verReserva">Reservas del Dia</string>
+    <string name="admin">Administrador</string>
+    <string name="reservasDia">Reservas Por Dia</string>
+    <string name="elegirFecha">Elija la Fecha</string>
+    <string name="ejemploFecha">dd/mm/aaaa</string>
+    <string name="ejemploNombre">Emilton Fabian Hernandez Mejia</string>
+    <string name="token">Token</string>
+    <string name="fExpiracion">Fecha de Expriracion</string>
+    <string name="ilimtado">No vence</string>
+    <string name="cDisponibles">Cupos Disponibles</string>
+    <string name="agendaEntrenamiento">Agenda Tu Entrenamiento</string>
+    <string name="seguro_del_token">Esta seguro que desea crear un Token?</string>
+
+    <string name="sutokenes">Su Token es:</string>
+    <string name="tokent">Token</string>
+
+
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "615546433867",
+    "project_id": "gymbooker-c78de",
+    "storage_bucket": "gymbooker-c78de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615546433867:android:6d140b6f7554c0254378ce",
+        "android_client_info": {
+          "package_name": "com.example.gymbooker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615546433867-iqaqa5rcn6eegendrd6e60nhtkj5u1lc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjYWfPUVLARC39gGlbNhiBtmAvMee1QCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615546433867-dqd6sdb2ckmod6lp9pbc53tgbtphus2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

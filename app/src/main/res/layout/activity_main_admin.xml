@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@color/white"
+        android:contentDescription="@string/vacio" />
+
+
+    <Button
+
+        android:id="@+id/btnConfig"
+
+
+        android:layout_width="191dp"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="628dp"
+        android:background="@drawable/general_button"
+        android:fontFamily="@font/vampiro_one"
+        android:text="@string/configuraciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGenerarToken"
+
+        android:layout_width="191dp"
+        android:layout_height="48dp"
+        android:background="@drawable/general_button"
+
+        android:fontFamily="@font/vampiro_one"
+
+
+        android:text="@string/generar"
+        app:layout_constraintBottom_toTopOf="@+id/btnVerUsuarios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.949" />
+
+    <Button
+        android:id="@+id/btnVerUsuarios"
+        android:layout_width="191dp"
+        android:layout_height="49dp"
+
+        android:background="@drawable/general_button"
+
+
+        android:fontFamily="@font/vampiro_one"
+
+
+        android:text="@string/usuarios"
+
+        app:layout_constraintBottom_toTopOf="@+id/btnConfig"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.959" />
+
+    <Button
+        android:id="@+id/btnReservasDia"
+
+        android:layout_width="193dp"
+        android:layout_height="48dp"
+        android:background="@drawable/general_button"
+
+
+        android:fontFamily="@font/vampiro_one"
+
+        android:text="@string/verReserva"
+        android:textColor="#FD020202"
+        app:layout_constraintBottom_toTopOf="@+id/btnGenerarToken"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

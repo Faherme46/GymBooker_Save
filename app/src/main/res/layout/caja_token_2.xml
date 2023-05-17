@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/fechaElegidaDia2"
+        android:layout_width="136dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints=""
+        android:ems="10"
+
+        android:inputType="datetime"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="185dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/sutokenes"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <TextView
+        android:id="@+id/tvRegistro3"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:fontFamily="@font/kaushan_script"
+        android:text="@string/tokent"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="58dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/general_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegistro3"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
+</androidx.constraintlayout.widget.ConstraintLayout>

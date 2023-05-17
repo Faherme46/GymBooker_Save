@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.LoginActivity">
+
+    <ImageView
+        android:id="@+id/ivfondo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/white" />
+
+
+    <TextView
+        android:id="@+id/tvlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/kaushan_script"
+        android:text="@string/iniciarsesion"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.515" />
+
+
+    <EditText
+        android:id="@+id/txtTokenLogin"
+        android:layout_width="214dp"
+        android:layout_height="48dp"
+
+        android:layout_marginTop="32dp"
+
+        android:background="@drawable/editext_shape"
+        android:ems="10"
+        android:fontFamily="@font/kaushan_script"
+        android:hint="@string/ingresar_token"
+        android:inputType="textPersonName"
+        android:paddingStart="15dp"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.487"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvlogin" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
+
+        android:layout_marginBottom="148dp"
+
+        android:background="@drawable/general_button"
+
+        android:fontFamily="@font/kaushan_script"
+        android:onClick="clickIniciar"
+        android:text="@string/ingresar"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textColor="#0B0A0A"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtRegistroLogin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints=""
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
+        android:onClick="clickRegistro"
+        android:singleLine="false"
+        android:text="@string/admin"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHighlight="#00B7FF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtQueToken"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="4dp"
+        android:autofillHints=""
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
+        android:onClick="dialogToken"
+        android:singleLine="false"
+        android:text="@string/token1"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHighlight="#00B7FF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtRegistroLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

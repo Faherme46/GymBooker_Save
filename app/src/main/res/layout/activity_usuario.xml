@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo3"
+    tools:context=".UsuarioActivity">
+
+    <TextView
+        android:id="@+id/txtReservasUser"
+        android:layout_width="145dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.827"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fecha_title2" />
+
+    <TextView
+        android:id="@+id/txtTokenUser"
+        android:layout_width="145dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fecha_title8" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title2"
+        android:layout_width="161dp"
+        android:layout_height="41dp"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_vertical|end"
+        android:text="@string/TotalRaservas"
+        android:paddingEnd="10dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title8"
+        android:layout_width="161dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_vertical|end"
+        android:text="@string/token"
+        android:paddingEnd="10dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fecha_title2" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title7"
+        android:layout_width="161dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_vertical|end"
+        android:text="@string/ExpiracionToken"
+        android:textAlignment="textEnd"
+        android:paddingEnd="10dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fecha_title2" />
+
+    <TextView
+        android:id="@+id/txtTokenExpireUser"
+        android:layout_width="145dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fecha_title7" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title3"
+        android:layout_width="145dp"
+        android:layout_height="32dp"
+        android:fontFamily="@font/kaushan_script"
+        android:text="@string/FechaNacimiento"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.422" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title5"
+        android:layout_width="163dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_vertical|end"
+        android:paddingEnd="10dp"
+        android:text="@string/telefono"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.609" />
+
+    <TextView
+        android:id="@+id/txtTelefonoUser"
+        android:layout_width="145dp"
+        android:layout_height="44dp"
+        android:text="TextView"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fecha_title5" />
+
+    <TextView
+        android:id="@+id/txrCedulaUser"
+        android:layout_width="127dp"
+        android:layout_height="37dp"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:text="TextView"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.338" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title4"
+        android:layout_width="110dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/kaushan_script"
+        android:text="@string/Cedula"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
+
+    <ImageView
+        android:id="@+id/imgUser"
+        android:layout_width="191dp"
+        android:layout_height="208dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374"
+        app:srcCompat="@drawable/no_img" />
+
+    <TextView
+        android:id="@+id/tv_fecha_title6"
+        android:layout_width="110dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/nombre"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <TextView
+        android:id="@+id/tvRegistro2"
+        android:layout_width="418dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/kaushan_script"
+        android:text="@string/InformacionUsuarios"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <TextView
+        android:id="@+id/txtNameUser"
+        android:layout_width="223dp"
+        android:layout_height="43dp"
+        android:text="TextView"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fecha_title6" />
+
+    <TextView
+        android:id="@+id/txtFechaUser"
+        android:layout_width="147dp"
+        android:layout_height="41dp"
+        android:fontFamily="@font/advent_pro_semibold"
+        android:text="TextView"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEditarUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="162dp"
+        android:background="@drawable/general_button"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fecha_title7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
