@@ -58,11 +58,12 @@ public class AgendarActivity extends AppCompatActivity {
                 mostrarSelectorHora();
             }
         });
-        txthora2.setOnClickListener(new View.OnClickListener() {
+        txtfecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                HelperFecha helperFecha=new HelperFecha();
 
-                mostrarSelectorFecha();
+                helperFecha.mostrarSelectorFecha(txtfecha);
             }
         });
 
@@ -77,6 +78,7 @@ public class AgendarActivity extends AppCompatActivity {
         r.setHoraIngreso(horainicial.getText().toString());
         r.setHoraSalida(horafinal.getText().toString());
         r.setRutina(area.getText().toString());
+
 
 
         r.setDuracion("0");
@@ -118,20 +120,5 @@ public class AgendarActivity extends AppCompatActivity {
             }
     }
 
-        private void mostrarSelectorFecha() {
-            final Calendar calendar = Calendar.getInstance();
-            int añoActual = calendar.get(Calendar.YEAR);
-            int mesActual = calendar.get(Calendar.MONTH);
-            int diaActual = calendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int año, int mes, int dia) {
-                    String fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
-                    txtfecha.setText(fechaSeleccionada);
-                }
-            }, añoActual, mesActual, diaActual);
-
-            datePickerDialog.show();
-        }
  }
