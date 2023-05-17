@@ -62,7 +62,11 @@
 
     <string name="sutokenes">Su Token es:</string>
     <string name="tokent">Token</string>
+
+    <string name="client">\n</string>
+
     <string name="apellido">Apellido</string>
+
 
 
 </resources>
