@@ -174,11 +174,9 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private  void verificar(){
-        esNulo((EditText) txtnombre);
-        //todo las verificaciones de cedula, de telefono, de correo, de contraseña
-    }
+
     private void verificar(User u) {
+        esNulo((EditText) txtnombre);
         if (!esNumeroDeTelefonoValido(u.getTelefono())) {
             // El número de teléfono no cumple con los requisitos
             // Realiza las acciones necesarias en caso de validación fallida
