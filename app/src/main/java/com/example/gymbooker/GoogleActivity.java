@@ -10,7 +10,7 @@ public class GoogleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google);
-        //todo cargar desde firebase un acceso con google
+        //0todo cargar desde firebase un acceso con google
         //login con google
     }
 }
