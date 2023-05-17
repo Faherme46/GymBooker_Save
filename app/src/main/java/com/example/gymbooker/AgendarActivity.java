@@ -100,7 +100,6 @@ public class AgendarActivity extends AppCompatActivity {
 
             timePickerDialog.show();
         }
-
         @Override
         protected void onResume() {
             super.onResume();
