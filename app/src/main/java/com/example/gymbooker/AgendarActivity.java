@@ -50,7 +50,7 @@ public class AgendarActivity extends AppCompatActivity {
         r.setDuracion("0");
 
         HelperReservas helperReservas = new HelperReservas();
-        helperReservas.guardarReserva(r);
+        helperReservas.postReserva(r);
 
 
     }
