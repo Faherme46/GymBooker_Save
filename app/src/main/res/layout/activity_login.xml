@@ -4,19 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".User.LoginActivity">
-
-    <ImageView
-        android:id="@+id/ivfondo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/white" />
 
 
     <TextView
@@ -35,8 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintVertical_bias="0.515" />
-
+        app:layout_constraintVertical_bias="0.545" />
 
     <EditText
         android:id="@+id/txtTokenLogin"
@@ -64,7 +52,7 @@
         android:layout_width="133dp"
         android:layout_height="48dp"
 
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="172dp"
 
         android:background="@drawable/general_button"
 
@@ -80,30 +68,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtRegistroLogin"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:autofillHints=""
-        android:fontFamily="@font/kaushan_script"
-        android:gravity="center_horizontal|center_vertical"
-        android:onClick="clickRegistro"
-        android:singleLine="false"
-        android:text="@string/admin"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHighlight="#00B7FF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/txtQueToken"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:fontFamily="@font/kaushan_script"
         android:gravity="center_horizontal|center_vertical"
@@ -115,6 +83,26 @@
         android:textColorHighlight="#00B7FF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtRegistroLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtRegistroLogin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="40dp"
+        android:autofillHints=""
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
+        android:onClick="clickRegistro"
+        android:singleLine="false"
+        android:text="@string/admin"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHighlight="#00B7FF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />

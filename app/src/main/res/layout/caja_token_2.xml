@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp">
 
     <EditText
-        android:id="@+id/fechaElegidaDia2"
-        android:layout_width="136dp"
+        android:id="@+id/txtTokenMostrar"
+        android:layout_width="wrap_content"
         android:layout_height="61dp"
         android:layout_marginTop="20dp"
         android:autofillHints=""
@@ -18,10 +18,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063"
+        app:layout_constraintVertical_bias="0.949"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -36,15 +36,16 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.394" />
 
     <TextView
         android:id="@+id/tvRegistro3"
         android:layout_width="match_parent"
         android:layout_height="61dp"
+        android:background="@drawable/shape_caja_naranja"
         android:fontFamily="@font/kaushan_script"
         android:text="@string/tokent"
         android:textAlignment="center"
@@ -59,13 +60,23 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="58dp"
+        android:id="@+id/btnCopy"
+        android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/general_button"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="104dp"
+        android:foreground="?attr/actionModeCopyDrawable"
+        android:foregroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegistro3"
-        app:srcCompat="?attr/actionModeCopyDrawable" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRegistro3" />
+
+    <ImageView
+        android:id="@+id/btnShare"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="28dp"
+        android:foreground="?attr/actionModeShareDrawable"
+        android:foregroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnCopy" />
 </androidx.constraintlayout.widget.ConstraintLayout>
