@@ -4,6 +4,7 @@ package com.example.gymbooker.User;
 import static android.content.ContentValues.TAG;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -109,6 +110,8 @@ public class HelperPersona {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
+
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
