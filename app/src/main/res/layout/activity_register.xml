@@ -86,7 +86,7 @@
         android:id="@+id/ed_cedula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="332dp"
+        android:layout_marginTop="280dp"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/Cedula"
@@ -94,7 +94,6 @@
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegistro" />
 
@@ -102,7 +101,7 @@
         android:id="@+id/ed_correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="224dp"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/correo"
@@ -110,7 +109,6 @@
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegistro" />
 
@@ -118,7 +116,7 @@
         android:id="@+id/ed_nacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="408dp"
+        android:layout_marginTop="344dp"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/FechaNacimiento"
@@ -126,7 +124,6 @@
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegistro" />
 
@@ -149,6 +146,18 @@
 
 
     </Button>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="515dp"
+        tools:ignore="MissingConstraints"
+        android:autofillHints="password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
