@@ -224,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //todo menu share
+                        String txt1=t.getTheToken();
                     }
                 });
 
