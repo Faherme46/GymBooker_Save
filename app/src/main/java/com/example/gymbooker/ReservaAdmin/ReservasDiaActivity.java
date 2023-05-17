@@ -80,7 +80,7 @@ public class ReservasDiaActivity extends AppCompatActivity {
     public void LoadData() {
 
         HelperReservas helperReservas=new HelperReservas();
-        ListaReservas=helperReservas.getReserva();
+        ListaReservas=helperReservas.getReservas();
         for (Reserva r:
              ListaReservas) {
             if(r.getFecha().equals(fechaElegida)){

@@ -23,6 +23,8 @@ import java.util.Calendar;
 
 public class AgendarActivity extends AppCompatActivity {
     EditText date, horainicial, horafinal, area;
+    private boolean isFirstTimeH1 = true;
+    private boolean isFirstTimeH2 = true;
 
     private EditText txtrutina, txthora1, txthora2, txtfecha;
     private Button agendar;
@@ -40,6 +42,28 @@ public class AgendarActivity extends AppCompatActivity {
         txthora2 = findViewById(R.id.txthora2);
         txtfecha = findViewById(R.id.txtfecha);
         agendar = findViewById(R.id.btn_agendar);
+
+        txthora1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mostrarSelectorHora();
+            }
+        });
+        txthora2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mostrarSelectorHora();
+            }
+        });
+        txthora2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mostrarSelectorFecha();
+            }
+        });
 
 
     }
@@ -59,30 +83,7 @@ public class AgendarActivity extends AppCompatActivity {
         HelperReservas helperReservas = new HelperReservas();
 
         //helperReservas.postReserva(r);
-
-
-
     }
-
-    public class Hora1 extends Activity {
-        private TextView textViewHora;
-        private boolean isFirstTime = true;
-
-        @SuppressLint("MissingInflatedId")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
-            textViewHora = findViewById(R.id.txthora1);
-            textViewHora.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostrarSelectorHora();
-                }
-            });
-        }
-
         private void mostrarSelectorHora() {
             final Calendar calendar = Calendar.getInstance();
             int horaActual = calendar.get(Calendar.HOUR_OF_DAY);
@@ -92,7 +93,7 @@ public class AgendarActivity extends AppCompatActivity {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     String horaFormateada = String.format("%02d:%02d", hourOfDay, minute);
-                    textViewHora.setText(horaFormateada);
+                    txthora1.setText(horaFormateada);
                 }
             }, horaActual, minutoActual, true);
 
@@ -104,80 +105,18 @@ public class AgendarActivity extends AppCompatActivity {
             super.onResume();
 
             // Mostrar el selector de hora solo si es la primera vez que se ejecuta
-            if (isFirstTime) {
-                isFirstTime = false;
+            if (isFirstTimeH1) {
+                isFirstTimeH1 = false;
             } else {
                 mostrarSelectorHora();
             }
-        }
 
-    }
-
-    public class Hora2 extends Activity {
-        private TextView textViewHora;
-        private boolean isFirstTime = true;
-
-        @SuppressLint("MissingInflatedId")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
-            textViewHora = findViewById(R.id.txthora2);
-            textViewHora.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostrarSelectorHora();
-                }
-            });
-        }
-
-        private void mostrarSelectorHora() {
-            final Calendar calendar = Calendar.getInstance();
-            int horaActual = calendar.get(Calendar.HOUR_OF_DAY);
-            int minutoActual = calendar.get(Calendar.MINUTE);
-
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    String horaFormateada = String.format("%02d:%02d", hourOfDay, minute);
-                    textViewHora.setText(horaFormateada);
-                }
-            }, horaActual, minutoActual, true);
-
-            timePickerDialog.show();
-        }
-
-        @Override
-        protected void onResume() {
-            super.onResume();
-
-            // Mostrar el selector de hora solo si es la primera vez que se ejecuta
-            if (isFirstTime) {
-                isFirstTime = false;
+            if (isFirstTimeH2) {
+                isFirstTimeH2 = false;
             } else {
                 mostrarSelectorHora();
             }
-        }
-
     }
-    public class Fecha extends Activity {
-        private TextView textViewFecha;
-
-        @SuppressLint("MissingInflatedId")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
-            textViewFecha = findViewById(R.id.txtfecha);
-            textViewFecha.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mostrarSelectorFecha();
-                }
-            });
-        }
 
         private void mostrarSelectorFecha() {
             final Calendar calendar = Calendar.getInstance();
@@ -189,11 +128,10 @@ public class AgendarActivity extends AppCompatActivity {
                 @Override
                 public void onDateSet(DatePicker view, int año, int mes, int dia) {
                     String fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
-                    textViewFecha.setText(fechaSeleccionada);
+                    txtfecha.setText(fechaSeleccionada);
                 }
             }, añoActual, mesActual, diaActual);
 
             datePickerDialog.show();
         }
-    }
-}
+ }

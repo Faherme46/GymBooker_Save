@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.R;
 import com.example.gymbooker.Tokens.HelperToken;
+import com.example.gymbooker.Tokens.Tokens;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -49,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         String loginUser = txtuser.getText().toString();
+        Tokens t1= helperToken.getTokenByToken(loginUser);
+        ArrayList<Tokens> tokensArrayList= helperToken.getTokens();
 
         if (helperToken.getTokenByToken(loginUser) != null) {
             if (helperToken.getTokenByToken(loginUser).isUsed() == false) {
@@ -63,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
 
+        }else{
+            Toast.makeText(this, "El token no existe", Toast.LENGTH_SHORT).show();
         }
     }
 

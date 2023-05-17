@@ -62,7 +62,7 @@ public class UsuarioActivity extends AppCompatActivity {
         HelperReservas helperReservas =new HelperReservas();
         ArrayList<Reserva> listReserva,listaFiltrada;
         listaFiltrada=new ArrayList<>();
-        listReserva=helperReservas.getReserva();
+        listReserva=helperReservas.getReservas();
         for (Reserva r:
              listReserva) {
             if (u.getCedula().equals(r.getCedula())){
