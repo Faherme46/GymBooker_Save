@@ -49,14 +49,14 @@ public class LoginActivity extends AppCompatActivity {
 
         if (helperToken.getTokenByToken(loginUser) != null) {
             if (helperToken.getTokenByToken(loginUser).isUsed() == false) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("user", "user");
-                editor.apply();
+
                 Intent i = new Intent(this, com.example.gymbooker.User.RegisterActivity.class);
+                i.putExtra("txtToken",loginUser);
                 startActivity(i);
                 finish();
             } else {
-                Toast.makeText(this, "Token ya implementado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "El token esta en uso", Toast.LENGTH_SHORT).show();
+                txtuser.setError("!");
             }
 
 
@@ -64,10 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void clickRegistro(View view){
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("logged", 1);
-        editor.putString("user", "admin");
-        editor.apply();
+
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
