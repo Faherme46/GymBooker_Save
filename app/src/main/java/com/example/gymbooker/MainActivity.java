@@ -2,6 +2,8 @@ package com.example.gymbooker;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -219,6 +222,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //todo copiar al portapapeles
+                        String contenido = txt.getText().toString();
+
+                        if (!contenido.isEmpty()) {
+                            ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                            ClipData clipData = ClipData.newPlainText("Texto copiado", contenido);
+                            if (clipboardManager != null) {
+                                clipboardManager.setPrimaryClip(clipData);
+                                Toast.makeText(MainActivity.this, "Texto copiado automáticamente", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "El campo de texto está vacío", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
                     }
                 });
@@ -227,34 +244,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         //todo menu share
                         String txt1=t.getTheToken();
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, txt1);
+                        startActivity(Intent.createChooser(intent, "Compartir usando"));
 
 
-                        class MainActivity1 extends Activity {
-                            private EditText editText;
-                            private ImageView btnShare;
-
-                            @SuppressLint("MissingInflatedId")
-                            @Override
-                            protected void onCreate(Bundle savedInstanceState) {
-                                super.onCreate(savedInstanceState);
-                                setContentView(R.layout.activity_main);
-
-                                editText = findViewById(R.id.fechaElegidaDiaCaja);
-                                btnShare = findViewById(R.id.btnShare);
-
-                                btnShare.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        String texto = editText.getText().toString();
-
-                                        Intent intent = new Intent(Intent.ACTION_SEND);
-                                        intent.setType("text/plain");
-                                        intent.putExtra(Intent.EXTRA_TEXT, texto);
-                                        startActivity(Intent.createChooser(intent, "Compartir usando"));
-                                    }
-                                });
-                            }
-                        }
                     }
                 });
 
