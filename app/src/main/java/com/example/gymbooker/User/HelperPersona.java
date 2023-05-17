@@ -77,15 +77,6 @@ public class HelperPersona {
 
         });
 
-
-        User u1 = new User(1,"1097608514", "Emilton Fabian", "Hernandez Mejia", "faherme46@gmail.com", "3166316579", "2005-04-25", "0001abc");
-        User u2 = new User(1,"1097608514","Emilton Fabian","Hernandez Mejia","faherme46@gmail.com","3166316578","2005-04-25","0002abc");
-        User u3 = new User(1,"1097608514","Emilton Fabian","Hernandez Mejia","faherme46@gmail.com","3166316577","2005-04-25","0003abc");
-
-        listUsers.add(u1);
-        listUsers.add(u2);
-        listUsers.add(u3);
-
         return listUsers;
     }
 
@@ -103,6 +94,7 @@ public class HelperPersona {
         user.put("telefono",u.getTelefono());
         user.put("correo",u.getCorreo());
         user.put("fNacimiento",u.getFechaNacimiento());
+        user.put("token",u.getToken());
 
         db.collection("tokens")
                 .add(user)

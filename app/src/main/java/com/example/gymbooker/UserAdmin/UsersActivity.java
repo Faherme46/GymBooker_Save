@@ -88,6 +88,6 @@ public class UsersActivity extends AppCompatActivity {
 
     public void LoadData(){
         HelperPersona helperPersona=new HelperPersona();
-        listUser=helperPersona.getUser();
+        listUser=helperPersona.getUsers();
     }
 }

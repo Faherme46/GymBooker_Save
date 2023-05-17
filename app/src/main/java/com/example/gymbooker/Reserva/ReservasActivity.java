@@ -81,7 +81,7 @@ public class ReservasActivity extends AppCompatActivity {
 
     public void LoadData(){
         HelperReservas helperReservas= new HelperReservas();
-        ListaReservas=helperReservas.getReserva();
+        ListaReservas=helperReservas.getReservas();
         preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
         String cc=preferences.getString("ccUsuario","");
         listaFiltrada=new ArrayList<>();

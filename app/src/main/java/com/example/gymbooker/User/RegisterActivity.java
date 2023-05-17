@@ -73,15 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void onClickGuardar(View view){
-        BeginSignInRequest.Builder signInRequest;
-        signInRequest = BeginSignInRequest.builder()
-                .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                        .setSupported(true)
-                        // Your server's client ID, not your Android client ID.
-                        .setServerClientId(getString(R.string.client))
-                        // Only show accounts previously used to sign in.
-                        .setFilterByAuthorizedAccounts(true)
-                        .build());
+
 
         HelperPersona bInstance = new HelperPersona();
         User u = new User();
@@ -98,6 +90,15 @@ public class RegisterActivity extends AppCompatActivity {
             u.setToken(null);
             //todo implementar aqui el Registro en google
             String correo= u.getCorreo();
+            BeginSignInRequest.Builder signInRequest;
+            signInRequest = BeginSignInRequest.builder()
+                    .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                            .setSupported(true)
+                            // Your server's client ID, not your Android client ID.
+                            .setServerClientId(getString(R.string.client))
+                            // Only show accounts previously used to sign in.
+                            .setFilterByAuthorizedAccounts(true)
+                            .build());
 
         }else{
             u.setToken(t1);
