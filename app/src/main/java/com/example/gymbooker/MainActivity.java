@@ -227,34 +227,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         //todo menu share
                         String txt1=t.getTheToken();
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, txt1);
+                        startActivity(Intent.createChooser(intent, "Compartir usando"));
 
 
-                        class MainActivity1 extends Activity {
-                            private EditText editText;
-                            private ImageView btnShare;
-
-                            @SuppressLint("MissingInflatedId")
-                            @Override
-                            protected void onCreate(Bundle savedInstanceState) {
-                                super.onCreate(savedInstanceState);
-                                setContentView(R.layout.activity_main);
-
-                                editText = findViewById(R.id.fechaElegidaDiaCaja);
-                                btnShare = findViewById(R.id.btnShare);
-
-                                btnShare.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        String texto = editText.getText().toString();
-
-                                        Intent intent = new Intent(Intent.ACTION_SEND);
-                                        intent.setType("text/plain");
-                                        intent.putExtra(Intent.EXTRA_TEXT, texto);
-                                        startActivity(Intent.createChooser(intent, "Compartir usando"));
-                                    }
-                                });
-                            }
-                        }
                     }
                 });
 

@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gymbooker.HelperFecha;
 import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.R;
 
@@ -34,6 +37,7 @@ import com.example.gymbooker.Tokens.Tokens;
 public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     public boolean exito=false;
+    private boolean isPrimeraVez=true;
 
     private TextView txtnombre,txttelefono,txtcorreo,txtcedula,txtfnacimiento;
     private Button btmcontinuar;
@@ -57,6 +61,14 @@ public class RegisterActivity extends AppCompatActivity {
         txtcedula = findViewById(R.id.ed_cedula);
         txtfnacimiento = findViewById(R.id.ed_nacimiento);
         btmcontinuar = findViewById(R.id.btn_registrar);
+
+        txtfnacimiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HelperFecha helperFecha = new HelperFecha();
+                helperFecha.mostrarSelectorFecha((EditText) txtfnacimiento);
+            }
+        });
 
 
 
@@ -84,21 +96,22 @@ public class RegisterActivity extends AppCompatActivity {
         u.setFechaNacimiento(txtfnacimiento.getText().toString());
         String t1=getIntent().getStringExtra("txtToken");
 
+
         HelperToken helperToken=new HelperToken();
         Tokens token1 =helperToken.getTokenByToken(t1);
-        if (preferences.getString("user","")=="admin"){
+        if (preferences.getString("user","").equals("admin")){
             u.setToken(null);
             //todo implementar aqui el Registro en google
-            String correo= u.getCorreo();
-            BeginSignInRequest.Builder signInRequest;
-            signInRequest = BeginSignInRequest.builder()
-                    .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                            .setSupported(true)
-                            // Your server's client ID, not your Android client ID.
-                            .setServerClientId(getString(R.string.client))
-                            // Only show accounts previously used to sign in.
-                            .setFilterByAuthorizedAccounts(true)
-                            .build());
+//            String correo= u.getCorreo();
+//            BeginSignInRequest.Builder signInRequest;
+//            signInRequest = BeginSignInRequest.builder()
+//                    .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+//                            .setSupported(true)
+//                            // Your server's client ID, not your Android client ID.
+//                            .setServerClientId(getString(R.string.client))
+//                            // Only show accounts previously used to sign in.
+//                            .setFilterByAuthorizedAccounts(true)
+//                            .build());
 
         }else{
             u.setToken(t1);

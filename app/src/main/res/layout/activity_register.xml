@@ -42,6 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
+        android:autoText="true"
+        android:contextClickable="false"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/nombre"
@@ -72,6 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:autoLink="phone"
+        android:autoText="true"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/telefono"
@@ -92,7 +96,7 @@
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/Cedula"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,27 +113,30 @@
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/correo"
-        android:inputType="textPersonName"
+        android:inputType="textWebEmailAddress"
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_telefono" />
 
-    <EditText
+    <TextView
         android:id="@+id/ed_nacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="16dp"
-
+        android:layout_marginTop="32dp"
         android:ems="10"
+
         android:fontFamily="@font/kaushan_script"
+        android:freezesText="true"
         android:hint="@string/FechaNacimiento"
-        android:inputType="textPersonName"
+        android:inputType="datetime"
         android:minHeight="48dp"
         android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_correo" />
 
@@ -153,18 +160,6 @@
 
 
     </Button>
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="515dp"
-        tools:ignore="MissingConstraints"
-        android:autofillHints="password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

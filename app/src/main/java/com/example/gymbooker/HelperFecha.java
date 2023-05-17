@@ -1,6 +1,9 @@
 package com.example.gymbooker;
 
+import android.app.DatePickerDialog;
 import android.os.Build;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 import com.example.gymbooker.Reserva.Reserva;
 
@@ -97,6 +100,25 @@ public class HelperFecha {
             localDate= LocalDate.parse(fecha);
         }
         return  localDate;
+    }
+
+    public void mostrarSelectorFecha(EditText et) {
+        final Calendar calendar = Calendar.getInstance();
+        int añoActual = calendar.get(Calendar.YEAR);
+        int mesActual = calendar.get(Calendar.MONTH);
+        int diaActual = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(et.getContext(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int año, int mes, int dia) {
+                String fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
+                et.setText(fechaSeleccionada);
+            }
+
+        }, añoActual, mesActual, diaActual);
+
+        datePickerDialog.show();
+
     }
 
 }
