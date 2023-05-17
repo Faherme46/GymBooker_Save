@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -96,67 +97,23 @@ public class MainActivity extends AppCompatActivity {
         generar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String token=null;
-                HelperToken helperToken=new HelperToken();
-                ArrayList<Tokens> listToken= helperToken.getTokens();
-                do{
-                    token=generarToken();
-                }while (helperToken.getTokenByToken(token)!=null);
-                HelperFecha helperFecha=new HelperFecha();
-                Tokens t=new Tokens();
-                t.setTheToken(token);
-                t.setfCreacion(helperFecha.getFechaActual().toString());
-                //todo cuadrar fechas con Dialog
-                boolean isUnlimited=true;
-                LocalDate date=null;
-                if (isUnlimited){
-                    t.isLimited(0);
-                    t.setfVencimiento("null");
-                }else {
-                    t.isLimited(1);
-                    t.setfVencimiento(date.toString());
-                }
 
-
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-                Map<String, Object> user = new HashMap<>();
-                user.put("thetoken",t.getTheToken());
-                user.put("fCreacion",t.getfCreacion());
-                user.put("fVencimiento",t.getfVencimiento());
-
-                db.collection("users")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("TAG", "Error adding document", e);
-                            }
-                        });
-
-                    AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage(R.string.seguro_del_token)
-                            .setTitle(R.string.token);
-                    String finalToken = token;
-                    builder.setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User clicked OK button
-                            declararToken(finalToken);
-                        }
-                    });
-                    builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
-                    AlertDialog alertDialog=builder.create();
-                    alertDialog.show();
+                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(R.string.seguro_del_token)
+                        .setTitle(R.string.token);
+                builder.setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        declararToken();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+                AlertDialog alertDialog=builder.create();
+                alertDialog.show();
             }
         });
         config= findViewById(R.id.btnConfig);
@@ -195,12 +152,12 @@ public class MainActivity extends AppCompatActivity {
        }
         return cadena;
     }
-    private void declararToken(String token){
+    private void declararToken(){
 
         AlertDialog.Builder builder1= new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = MainActivity.this.getLayoutInflater();
         View view=inflater.inflate(R.layout.caja_token,null);
-        String finalToken = token;
+
 
         builder1.setView(view);
         EditText txt;
@@ -228,19 +185,53 @@ public class MainActivity extends AppCompatActivity {
 
                 HelperFecha helperFecha = new HelperFecha();
                 Tokens t = new Tokens();
-                t.setTheToken(token);
+                t.setTheToken(generarToken());
                 t.setfCreacion(helperFecha.getFechaActual().toString());
-
-                t.setfVencimiento(txt.getText().toString());
-                boolean isUnlimited = true;
-                LocalDate date = null;
-                if (isUnlimited) {
+                if (checkBox.isChecked()) {
                     t.isLimited(0);
                     t.setfVencimiento("null");
                 } else {
                     t.isLimited(1);
-                    t.setfVencimiento(date.toString());
+                    t.setfVencimiento(txt.getText().toString());
                 }
+                t.setUsed(false);
+
+
+                HelperToken helperToken=new HelperToken();
+                helperToken.postToken(t);
+
+                AlertDialog.Builder builder2= new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                View view=inflater.inflate(R.layout.caja_token_2,null);
+                builder2.setView(view);
+
+                EditText txt;
+                txt = view.findViewById(R.id.txtTokenMostrar);
+                txt.setEnabled(false);
+                txt.setText(t.getTheToken());
+
+                ImageView btnCopy,btnShare;
+                btnCopy=view.findViewById(R.id.btnCopy);
+                btnShare=view.findViewById(R.id.btnShare);
+
+                btnCopy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //todo copiar al portapapeles
+                    }
+                });
+                btnShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //todo menu share
+                    }
+                });
+
+                builder2.setPositiveButton(R.string.continuar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {}
+                });
+                builder2.show();
+
             }
         }).setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
