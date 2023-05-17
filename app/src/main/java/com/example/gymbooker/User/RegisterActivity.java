@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,9 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.R;
+import com.example.gymbooker.Tokens.HelperToken;
+import com.example.gymbooker.Tokens.Tokens;
 
 public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences preferences;
+    public boolean exito=false;
 
     private TextView txtnombre,txttelefono,txtcorreo,txtcedula,txtfnacimiento;
     private Button btmcontinuar;
@@ -32,6 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         txtcedula = findViewById(R.id.ed_cedula);
         txtfnacimiento = findViewById(R.id.ed_nacimiento);
         btmcontinuar = findViewById(R.id.btn_registrar);
+
+
+
     }
 
     public void onClickGuardar(View view){
@@ -43,27 +50,55 @@ public class RegisterActivity extends AppCompatActivity {
         u.setCorreo(txtcorreo.getText().toString());
         u.setCedula(txtcedula.getText().toString());
         u.setFechaNacimiento(txtfnacimiento.getText().toString());
+        String t1=getIntent().getStringExtra("txtToken");
+        u.setToken(t1);
         bInstance.postUser(u);
 
-        int response = 0;       //Desvinculé que postUser fuese de return int, para poder subirlo al firestore
 
-        if(response==200){
-            Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
             preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
             SharedPreferences.Editor editor= preferences.edit();
             editor.putInt("logged",1);
             editor.putString("ccUsuario",u.getCedula());
             editor.apply();
+
+            //Actualizar token
+            HelperToken helperToken=new HelperToken();
+            Tokens token1 =helperToken.getTokenByToken(t1);
+            token1.setUsed(true);
+            helperToken.postToken(token1);
+
+            String user=getIntent().getStringExtra("user");
+            if (user.equals("user")){
+                editor.putInt("logged", 1);
+                editor.putString("user", "user");
+                editor.apply();
+            }else{
+                editor.putInt("logged", 1);
+                editor.putString("user", "admin");
+                editor.apply();
+            }
+
             Intent i=new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(i);
 
-        }else if(response==201){
-            Toast.makeText(this, "Error al Conectar", Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(RegisterActivity.this, LoginActivity.class);
-            startActivity(i);
-        }else {
-            Toast.makeText(this, "No carga", Toast.LENGTH_SHORT).show();
-        }
+//        }else {
+//            Toast.makeText(this, "Error al Conectar", Toast.LENGTH_SHORT).show();
+//            Intent i=new Intent(RegisterActivity.this, LoginActivity.class);
+//            startActivity(i);
+//        }
 
+
+
+    }
+
+    private  void verificar(){
+        esNulo((EditText) txtnombre);
+        //todo las verificaciones de cedula, de telefono, de correo, de contraseña
+    }
+
+    private void esNulo(EditText et) {
+        if(et.getText().toString().isEmpty()){
+            et.setError("Complete este campo");
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.example.gymbooker.User;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -56,6 +57,8 @@ public class HelperPersona {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
+
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -77,10 +80,6 @@ public class HelperPersona {
         }
         return null;
     }
-
-    private class RetroFit {
-    }
-
 
     public HelperPersona() {
     }

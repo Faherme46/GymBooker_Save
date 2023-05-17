@@ -1,6 +1,17 @@
 package com.example.gymbooker.Reserva;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HelperReservas {
 
@@ -18,7 +29,30 @@ public class HelperReservas {
 
 
 
-    public void guardarReserva(Reserva r){
+    public void postReserva(Reserva r){
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> reserva = new HashMap<>();
+        reserva.put("fecha",r.getFecha());
+        reserva.put("rutina",r.getRutina());
+        reserva.put("horaIngreso",r.getHoraIngreso());
+        reserva.put("horaSalida",r.getHoraSalida());
+
+
+        db.collection("reserva")
+                .add(reserva)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error adding document", e);
+                    }
+                });
     }
 }

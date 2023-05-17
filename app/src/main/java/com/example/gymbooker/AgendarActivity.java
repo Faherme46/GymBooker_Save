@@ -43,7 +43,7 @@ public class AgendarActivity extends AppCompatActivity {
 
 
     }
-
+    //todo añadir selector
 
     public void guardar(View view) {
 
@@ -57,7 +57,9 @@ public class AgendarActivity extends AppCompatActivity {
         r.setDuracion("0");
 
         HelperReservas helperReservas = new HelperReservas();
+
         //helperReservas.postReserva(r);
+
 
 
     }
