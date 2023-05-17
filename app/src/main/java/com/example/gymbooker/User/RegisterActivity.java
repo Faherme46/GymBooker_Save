@@ -29,6 +29,12 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
+        if (preferences.getInt("logged",0)==1){
+            Intent i=new Intent(RegisterActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
 
         txtnombre = findViewById(R.id.ed_nombre);
         txttelefono = findViewById(R.id.ed_telefono);
@@ -43,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onClickGuardar(View view){
 
+
         HelperPersona bInstance = new HelperPersona();
         User u = new User();
         u.setNombre(txtnombre.getText().toString());
@@ -51,36 +58,31 @@ public class RegisterActivity extends AppCompatActivity {
         u.setCedula(txtcedula.getText().toString());
         u.setFechaNacimiento(txtfnacimiento.getText().toString());
         String t1=getIntent().getStringExtra("txtToken");
-        u.setToken(t1);
+
+        HelperToken helperToken=new HelperToken();
+        Tokens token1 =helperToken.getTokenByToken(t1);
+        if (preferences.getString("user","")=="admin"){
+            u.setToken(null);
+            //todo implementar aqui el Registro en google
+            String correo= u.getCorreo();
+
+        }else{
+            u.setToken(t1);
+            token1.setUsed(true);
+            //todo cambiar post a update
+            helperToken.postToken(token1);
+        }
         bInstance.postUser(u);
 
+        SharedPreferences.Editor editor= preferences.edit();
+        editor.putInt("logged",1);
+        editor.putString("ccUsuario",u.getCedula());
+        editor.apply();
+        //Actualizar token
 
-            preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
-            SharedPreferences.Editor editor= preferences.edit();
-            editor.putInt("logged",1);
-            editor.putString("ccUsuario",u.getCedula());
-            editor.apply();
-
-            //Actualizar token
-            HelperToken helperToken=new HelperToken();
-            Tokens token1 =helperToken.getTokenByToken(t1);
-            token1.setUsed(true);
-            helperToken.postToken(token1);
-
-            String user=getIntent().getStringExtra("user");
-            if (user.equals("user")){
-                editor.putInt("logged", 1);
-                editor.putString("user", "user");
-                editor.apply();
-            }else{
-                editor.putInt("logged", 1);
-                editor.putString("user", "admin");
-                editor.apply();
-            }
-
-            Intent i=new Intent(RegisterActivity.this, MainActivity.class);
-            startActivity(i);
-
+        Intent i=new Intent(RegisterActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
 //        }else {
 //            Toast.makeText(this, "Error al Conectar", Toast.LENGTH_SHORT).show();
 //            Intent i=new Intent(RegisterActivity.this, LoginActivity.class);
