@@ -218,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //todo copiar al portapapeles
+
                     }
                 });
                 btnShare.setOnClickListener(new View.OnClickListener() {
