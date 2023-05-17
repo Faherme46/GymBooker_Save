@@ -41,7 +41,7 @@
         android:id="@+id/ed_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/nombre"
@@ -53,58 +53,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRegistro" />
 
     <EditText
-        android:id="@+id/ed_apellido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:fontFamily="@font/kaushan_script"
-        android:hint="@string/apellido"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_nombre" />
-
-    <EditText
-        android:id="@+id/ed_telefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:fontFamily="@font/kaushan_script"
-        android:hint="@string/telefono"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_cedula" />
-
-    <EditText
-        android:id="@+id/ed_cedula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="16dp"
-
-        android:ems="10"
-        android:fontFamily="@font/kaushan_script"
-        android:hint="@string/Cedula"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_apellido" />
-
-    <EditText
         android:id="@+id/ed_correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
 
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
@@ -117,11 +70,26 @@
         app:layout_constraintTop_toBottomOf="@+id/ed_telefono" />
 
     <EditText
+        android:id="@+id/ed_telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:fontFamily="@font/kaushan_script"
+        android:hint="@string/telefono"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_cedula" />
+
+    <EditText
         android:id="@+id/ed_nacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
 
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
@@ -149,22 +117,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_nacimiento"
-        app:layout_constraintVertical_bias="0.945">
+        app:layout_constraintVertical_bias="0.147">
 
 
     </Button>
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/ed_cedula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+
         android:ems="10"
-        android:inputType="textPassword"
+        android:fontFamily="@font/kaushan_script"
+        android:hint="@string/Cedula"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="515dp"
-        tools:ignore="MissingConstraints"
-        android:autofillHints="password" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_apellido" />
+
+    <EditText
+        android:id="@+id/ed_apellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:fontFamily="@font/kaushan_script"
+        android:hint="@string/apellido"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_nombre" />
+
+    <Button
+        android:id="@+id/signin_google"
+        android:layout_width="202dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_borde_lineas"
+        android:fontFamily="@font/vampiro_one"
+        android:onClick="onClickSignInGoogle"
+        android:text="Continua con google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_registrar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
