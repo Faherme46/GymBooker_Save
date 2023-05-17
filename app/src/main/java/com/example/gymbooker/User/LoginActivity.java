@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     public  void clickIniciar( View view) {
 
         HelperToken helperToken = new HelperToken();
+        SharedPreferences.Editor editor= preferences.edit();
+        editor.putString("user", "user");
+        editor.apply();
 
 
         String loginUser = txtuser.getText().toString();
@@ -65,7 +68,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void clickRegistro(View view){
 
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, RegisterActivity.class);
+        SharedPreferences.Editor editor= preferences.edit();
+        editor.putString("user", "admin");
+        editor.apply();
         startActivity(i);
         finish();
     }

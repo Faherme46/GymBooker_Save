@@ -3,13 +3,13 @@ package com.example.gymbooker.Tokens;
 import java.io.Serializable;
 
 public class Tokens implements Serializable {
-    private int idToken,isLimited;
-    private String theToken,fVencimiento,fCreacion;
+    private int isLimited;
+    private String theToken,fVencimiento,fCreacion,idToken;
     private boolean used;
 
     public Tokens(){}
 
-    public Tokens(int idToken, int isLimited, String theToken, String fVencimiento, String fCreacion, boolean used) {
+    public Tokens(String idToken, int isLimited, String theToken, String fVencimiento, String fCreacion, boolean used) {
         this.idToken = idToken;
         this.isLimited = isLimited;
         this.theToken = theToken;
@@ -26,9 +26,9 @@ public class Tokens implements Serializable {
         this.used = used;
     }
 
-    public int getIdToken() {
+    public String getIdToken() {
         return idToken;
-    }public void setIdToken(int idToken) {
+    }public void setIdToken(String idToken) {
         this.idToken = idToken;
     }
 

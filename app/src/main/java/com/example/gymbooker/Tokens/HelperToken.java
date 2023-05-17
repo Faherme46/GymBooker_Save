@@ -24,28 +24,57 @@ public class HelperToken {
     public ArrayList<Tokens> getTokens() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        DocumentReference docRef = db.collection("cities").document("SF");
+        DocumentReference docRef = db.collection("tokens").document("SF");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    DocumentSnapshot TokenDocument = task.getResult();
+                    if (TokenDocument.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + TokenDocument.getData());
+
+                        Map<String, Object> originalMap = TokenDocument.getData();
+                        Map<String, Map<String, Object>> parsedMap = new HashMap<>();
+
+                        for (Map.Entry<String, Object> entry : originalMap.entrySet()) {
+                            String key = entry.getKey();
+                            Object value = entry.getValue();
+
+                            if (value instanceof Map) {
+                                @SuppressWarnings("unchecked")
+                                Map<String, Object> nestedMap = (Map<String, Object>) value;
+                                parsedMap.put(key, nestedMap);
+                            } else {
+                            }
+                        }
+
+                        for (Map.Entry<String, Map<String, Object>> entry : parsedMap.entrySet()) {
+                            String key = entry.getKey();
+                            Tokens item = new Tokens();
+
+                            item.setIdToken(key);
+                            item.setTheToken((String) entry.getValue().get("thtoken"));
+                            item.setfCreacion((String) entry.getValue().get("fCreacion"));
+                            item.setfVencimiento((String) entry.getValue().get("fVencimiento"));
+                            item.setLimited((int) entry.getValue().get("fVencimiento"));
+
+                            listToken.add(item);
+                        }
                     } else {
                         Log.d(TAG, "No such document");
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
+
             }
+
         });
 
-        Tokens t1=new Tokens(101,1,"abc1","2023-01-12","2023-05-16",false);
-        Tokens t2=new Tokens(102,1,"abc2","2023-01-12","2023-05-16",false);
-        Tokens t3=new Tokens(103,1,"abc3","2023-01-12","2023-05-16",false);
-        Tokens t4=new Tokens(104,1,"abc4","2023-01-12","2023-05-16",false);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Tokens t1=new Tokens("101",1,"abc1","2023-01-12","2023-05-16",false);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Tokens t2=new Tokens("102",1,"abc2","2023-01-12","2023-05-16",false);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Tokens t3=new Tokens("103",1,"abc3","2023-01-12","2023-05-16",false);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Tokens t4=new Tokens("104",1,"abc4","2023-01-12","2023-05-16",false);
         listToken.add(t1);
         listToken.add(t2);
         listToken.add(t3);
