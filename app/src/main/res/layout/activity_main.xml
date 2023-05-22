@@ -22,6 +22,26 @@
 
 
     <Button
+        android:id="@+id/btnReservasDia"
+
+        android:layout_width="193dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="424dp"
+
+
+        android:background="@drawable/general_button"
+
+        android:fontFamily="@font/vampiro_one"
+        android:text="@string/Agendar"
+        android:textColor="#FD020202"
+        app:layout_constraintBottom_toTopOf="@+id/btnGenerarToken"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
+    <Button
         android:id="@+id/btnMisEntrenamientos"
 
         android:layout_width="191dp"
@@ -36,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <Button
         android:id="@+id/btnVerUsuarios"
@@ -55,26 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
-
-    <Button
-        android:id="@+id/btnReservasDia"
-
-        android:layout_width="193dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="400dp"
-
-
-        android:background="@drawable/general_button"
-
-        android:fontFamily="@font/vampiro_one"
-        android:text="@string/Agendar"
-        android:textColor="#FD020202"
-        app:layout_constraintBottom_toTopOf="@+id/btnGenerarToken"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
+        app:layout_constraintVertical_bias="0.859" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

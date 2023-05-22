@@ -1,80 +1,75 @@
 package com.example.gymbooker.Tokens;
 
-import static android.content.ContentValues.TAG;
+import static android.app.PendingIntent.getActivity;
 
 import android.util.Log;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.gymbooker.MainActivity;
+import com.example.gymbooker.Retrofit.APIService;
+import com.example.gymbooker.Retrofit.TokensService;
+import com.google.rpc.Help;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class HelperToken {
-    ArrayList<Tokens> listToken = new ArrayList<>();
+    ArrayList<Tokens> listTokens = new ArrayList<>();
     public ArrayList<Tokens> getTokens() {
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("tokens").document("SF");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        Retrofit myRetro = APIService.getInstancia();
+        TokensService myTokensService = myRetro.create(TokensService.class);
+
+        myTokensService.getAllTokens().enqueue(new Callback<Object>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot TokenDocument = task.getResult();
-                    if (TokenDocument.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + TokenDocument.getData());
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("mi_log",response.body().toString());
 
-                        Map<String, Object> originalMap = TokenDocument.getData();
-                        Map<String, Map<String, Object>> parsedMap = new HashMap<>();
+                Map<String,Map> datos = (Map<String, Map>) response.body();
 
-                        for (Map.Entry<String, Object> entry : originalMap.entrySet()) {
-                            String key = entry.getKey();
-                            Object value = entry.getValue();
-
-                            if (value instanceof Map) {
-                                @SuppressWarnings("unchecked")
-                                Map<String, Object> nestedMap = (Map<String, Object>) value;
-                                parsedMap.put(key, nestedMap);
-                            } else {
-                            }
-                        }
-
-                        for (Map.Entry<String, Map<String, Object>> entry : parsedMap.entrySet()) {
-                            String key = entry.getKey();
-                            Tokens item = new Tokens();
-
-                            item.setIdToken(key);
-                            item.setTheToken((String) entry.getValue().get("thtoken"));
-                            item.setfCreacion((String) entry.getValue().get("fCreacion"));
-                            item.setfVencimiento((String) entry.getValue().get("fVencimiento"));
-                            item.setLimited((int) entry.getValue().get("fVencimiento"));
-
-                            listToken.add(item);
-                        }
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                for (Map.Entry<String, Map> item : datos.entrySet()){
+                    Tokens eachToken = new Tokens();
+                    eachToken.setTheToken((String) item.getValue().get("thetoken"));
+                    eachToken.setfCreacion((String) item.getValue().get("fCreacion"));
+                    eachToken.setLimited((int) item.getValue().get("isLimited"));
+                    eachToken.setfVencimiento((String) item.getValue().get("fVencimiento"));
+                    listTokens.add(eachToken);
                 }
 
             }
 
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
         });
 
-        return listToken;
+        return listTokens;
+
     }
 
-    public ArrayList<Tokens> getTokensDefault() {
+    public void postToken(Tokens toPostToken){
+
+        Retrofit myRetro = APIService.getInstancia();
+        TokensService myTokensService = myRetro.create(TokensService.class);
+
+        myTokensService.postToken(toPostToken).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+            }
+        });
+    }
+  public ArrayList<Tokens> getTokensDefault() {
 
         ArrayList<Tokens> tokensArrayList=new ArrayList<>();
         Tokens t1=new Tokens(0,"ab01","2023-05-27","2023-05-16","t1",false);
@@ -88,6 +83,41 @@ public class HelperToken {
         return listToken;
     }
 
+    /*public void updateToken(Tokens toUpdateToken){
+
+        Retrofit myRetro = APIService.getInstancia();
+        TokensService myTokensService = myRetro.create(TokensService.class);
+
+        myTokensService.editToken(toUpdateToken.getTheToken(),toUpdateToken).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+            }
+        });
+    }
+
+   
+
+    public void deleteToken(Tokens toDeleteToken){
+
+        Retrofit myRetro = APIService.getInstancia();
+        TokensService myTokensService = myRetro.create(TokensService.class);
+
+        myTokensService.deleteToken(toDeleteToken.getTheToken()).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+            }
+        });
+    }*/
+
+
     //Metodo que llama la lista de tokens y busca segun el token indicado
     public Tokens getTokenByToken(String token){
         for (Tokens j:
@@ -97,30 +127,6 @@ public class HelperToken {
             }
         }
         return null;
-    }
-
-    public void postToken(Tokens t){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        Map<String, Object> token = new HashMap<>();
-        token.put("thetoken",t.getTheToken());
-        token.put("fCreacion",t.getfCreacion());
-        token.put("fVencimiento",t.getfVencimiento());
-
-        db.collection("tokens")
-                .add(token)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error adding document", e);
-                    }
-                });
     }
 }
 

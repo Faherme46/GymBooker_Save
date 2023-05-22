@@ -2,6 +2,8 @@ package com.example.gymbooker;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -218,12 +221,14 @@ public class MainActivity extends AppCompatActivity {
                 btnCopy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         String txt1=t.getTheToken();
                         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                         ClipData clipData = ClipData.newPlainText("Texto copiado", txt1);
                         if (clipboardManager != null) {
                             clipboardManager.setPrimaryClip(clipData);
                             Toast.makeText(MainActivity.this, "Copiado", Toast.LENGTH_SHORT).show();
+
 
                     }
                 });
@@ -255,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog=builder1.create();
         alertDialog.show();
-
 
 
 
