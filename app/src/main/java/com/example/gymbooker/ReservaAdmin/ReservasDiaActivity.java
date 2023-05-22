@@ -76,7 +76,7 @@ public class ReservasDiaActivity extends AppCompatActivity {
                 //TODO acciones al marcar asistido
 
                 Button bOk= view.findViewById(R.id.btnMark);
-                Button cancel= view.findViewById(R.id.btnMark);
+                Button cancel= view.findViewById(R.id.btnMark2);
                 cancel.setVisibility(View.INVISIBLE);
                 Toast.makeText(ReservasDiaActivity.this, "Asistido", Toast.LENGTH_SHORT).show();
             }
@@ -92,7 +92,7 @@ public class ReservasDiaActivity extends AppCompatActivity {
                 myAdapter.setDataSet(ListaReservas);
                 //TODO acciones al marcar cancelado
                 Button bOk= view.findViewById(R.id.btnMark);
-                Button cancel= view.findViewById(R.id.btnMark);
+                Button cancel= view.findViewById(R.id.btnMark2);
                 bOk.setVisibility(View.INVISIBLE);
 
                 //todo modificar el estado al cancelar

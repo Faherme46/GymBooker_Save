@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/kaushan_script"
             android:paddingLeft="60dp"
-            android:text="nombre"
+            android:text="@string/nombre"
             android:textColor="#070707"
             android:textSize="16sp" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/kaushan_script"
-            android:text="Fecha Limite"
+            android:text="@string/fExpiracion"
             android:textColor="#0C0C0C"
             android:textSize="16sp" />
 
