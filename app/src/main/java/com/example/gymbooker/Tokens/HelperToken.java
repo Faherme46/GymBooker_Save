@@ -27,8 +27,6 @@ public class HelperToken {
         Retrofit myRetro = APIService.getInstancia();
         TokensService myTokensService = myRetro.create(TokensService.class);
 
-
-
             myTokensService.getAllTokens().enqueue(new Callback<Object>() {
                 @Override
                 public void onResponse(Call<Object> call, Response<Object> response) {
@@ -43,9 +41,10 @@ public class HelperToken {
                         eachToken.setLimited((double) item.getValue().get("isLimited"));
                         eachToken.setfVencimiento((String) item.getValue().get("fVencimiento"));
                         listTokens.add(eachToken);
-
                         respon=1;
                     }
+
+                    Log.d("lista",listTokens.toString());
 
                 }
                 @Override
@@ -54,7 +53,7 @@ public class HelperToken {
 
                 }
             });
-
+        Log.d("lista",listTokens.toString());
         return listTokens;
 
     }
