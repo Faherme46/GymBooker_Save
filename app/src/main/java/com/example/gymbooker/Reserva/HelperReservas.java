@@ -1,7 +1,9 @@
 package com.example.gymbooker.Reserva;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.Retrofit.APIService;
 import com.example.gymbooker.Retrofit.ReservaService;
 import com.example.gymbooker.User.User;
@@ -15,7 +17,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class HelperReservas {
-    ArrayList<Reserva> listReservas = new ArrayList<>();
+    ArrayList<Reserva> listReserva = new ArrayList<>();
+
     public ArrayList<Reserva> getReservas() {
 
         Retrofit myRetro = APIService.getInstancia();
@@ -32,11 +35,11 @@ public class HelperReservas {
                     eachReserva.setCedula((String) item.getValue().get("cedula"));
                     eachReserva.setFecha((String) item.getValue().get("fecha"));
                     eachReserva.setDuracion((String) item.getValue().get("duracion"));
-                    eachReserva.setEstado((int) item.getValue().get("estado"));
+                    eachReserva.setEstado((double) item.getValue().get("estado"));
                     eachReserva.setHoraIngreso((String) item.getValue().get("hIngreso"));
                     eachReserva.setHoraSalida((String) item.getValue().get("hSalida"));
                     eachReserva.setRutina((String) item.getValue().get("rutina"));
-                    listReservas.add(eachReserva);
+                    listReserva.add(eachReserva);
                 }
             }
 
@@ -45,9 +48,6 @@ public class HelperReservas {
 
             }
         });
-
-
-
 
         return listReserva;
     }
@@ -74,6 +74,7 @@ public class HelperReservas {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 Log.d("mi_log",response.body().toString());
+
             }
 
             @Override

@@ -1,5 +1,7 @@
 package com.example.gymbooker.Reserva;
 
+import android.os.Build;
+
 import com.example.gymbooker.HelperFecha;
 
 import java.io.Serializable;
@@ -8,7 +10,7 @@ public class Reserva implements Serializable {
     private String fecha, rutina,horaIngreso, horaSalida,duracion;
     private String cedula;
 
-    private int   estado;
+    private double   estado;
 
     //Estados=
     //0. Pendiente
@@ -27,6 +29,9 @@ public class Reserva implements Serializable {
         this.horaIngreso = horaIngreso;
         this.horaSalida = horaSalida;
         HelperFecha helperFecha=new HelperFecha();
+
+
+        this.fecha= String.valueOf(helperFecha.getFechaActual());
         this.estado=0;
     }
 
@@ -76,9 +81,9 @@ public class Reserva implements Serializable {
         this.cedula = cedula;
     }
 
-    public int getEstado() {
+    public double getEstado() {
         return estado;
-    }    public void setEstado(int estado) {
+    }    public void setEstado(double estado) {
         this.estado = estado;
     }
 }

@@ -42,7 +42,9 @@ import java.text.SimpleDateFormat;
 
 public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences preferences;
-    public boolean exito=false;
+    private HelperPersona bInstance;
+    private User u;
+
     private boolean isPrimeraVez=true;
 
     private TextView txtnombre,txttelefono,txtcorreo,txtcedula,txtfnacimiento;
@@ -78,12 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HelperFecha helperFecha = new HelperFecha();
-                helperFecha.mostrarSelectorFecha((EditText) txtfnacimiento);
+                helperFecha.mostrarSelectorFecha((TextView) txtfnacimiento);
             }
         });
-
-
-
     }
 
 
@@ -112,38 +111,27 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onClickGuardar(View view) {
 
-        if(verificarVoid() && verificar()) {
+        if(verificar()) {
 
-            HelperPersona bInstance = new HelperPersona();
-            User u = new User();
+            bInstance = new HelperPersona();
+            u = new User();
             u.setNombre(txtnombre.getText().toString());
             u.setTelefono(txttelefono.getText().toString());
             u.setCorreo(txtcorreo.getText().toString());
             u.setCedula(txtcedula.getText().toString());
             u.setFechaNacimiento(txtfnacimiento.getText().toString());
-            String t1 = getIntent().getStringExtra("txtToken");
+            String txt1 = getIntent().getStringExtra("txtToken");
 
-
-
-
-        HelperPersona bInstance = new HelperPersona();
-        User u = new User();
-        u.setNombre(txtnombre.getText().toString());
-        u.setTelefono(txttelefono.getText().toString());
-        u.setCorreo(txtcorreo.getText().toString());
-        u.setCedula(txtcedula.getText().toString());
-        u.setFechaNacimiento(txtfnacimiento.getText().toString());
-        String t1=getIntent().getStringExtra("txtToken");
 
             HelperToken helperToken = new HelperToken();
-            Tokens token1 = helperToken.getTokenByToken(t1);
+            Tokens token1 = helperToken.getTokenByToken(txt1);
             if (preferences.getString("user", "").equals("admin")) {
                 u.setToken(null);
                 //todo implementar aqui el Registro en google
 
 
-            BeginSignInRequest.Builder signInRequest;
-            signInRequest = BeginSignInRequest.builder()
+                BeginSignInRequest.Builder signInRequest;
+                signInRequest = BeginSignInRequest.builder()
                     .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                             .setSupported(true)
                             // Your server's client ID, not your Android client ID.
@@ -153,9 +141,9 @@ public class RegisterActivity extends AppCompatActivity {
                             .build());
 
 
-            String idToken = u.getCorreo();
-            AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
-            mAuth.signInWithCredential(firebaseCredential)
+                String idToken = u.getCorreo();
+                AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
+                mAuth.signInWithCredential(firebaseCredential)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -173,15 +161,12 @@ public class RegisterActivity extends AppCompatActivity {
                     });
 
             } else {
-                u.setToken(t1);
+                u.setToken(txt1);
                 token1.setUsed(true);
                 //todo cambiar post a update
-                helperToken.postToken(token1);
+                //helperToken.postToken(token1);
             }
             bInstance.postUser(u);
-
-
-            //Desvinculé que postUser fuese de return int, para poder subirlo al firestore
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("logged", 1);
@@ -200,45 +185,40 @@ public class RegisterActivity extends AppCompatActivity {
 
         }else{
             Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
+
         }
     }
-    private boolean verificarVoid(){
-        if(
-        esNulo((EditText) txtnombre) ||
-        esNulo((EditText) txttelefono) ||
-        esNulo((EditText) txtcedula) ||
-        esNulo((EditText) txtcorreo)){
+    private boolean verificar(){
+        if (
+                esNulo((EditText) txtnombre) ||
+                        esNulo((EditText) txttelefono) ||
+                        esNulo((EditText) txtcedula) ||
+                        esNulo((EditText) txtcorreo)) {
             return false;
-        }else{
-            //todo las verificaciones de cedula, de telefono, de correo
-        }
-        return true;
+        } else {
 
+            if (!esNumeroDeTelefonoValido(txttelefono.getText().toString())) {
+                // El número de teléfono no cumple con los requisitos
+                // Realiza las acciones necesarias en caso de validación fallida
+                txttelefono.setError("No es un telefono valido");
+                return false;
+            }
+            if (!esCorreoValido(txtcorreo.getText().toString())) {
+                // El correo electrónico no cumple con los requisitos
+                // Realiza las acciones necesarias en caso de validación fallida
+                txtcorreo.setError("No es un correo valido");
+                return false;
+            }
+            if (!esNumeroDeCedulaValido(txtcedula.getText().toString())) {
+                // La cédula no cumple con los requisitos
+                // Realiza las acciones necesarias en caso de validación fallida
+                txtcedula.setError("Solo Pueden ser numeros");
+                return false;
+            }
 
-    private void verificar(User u) {
-        
-        if (!esNumeroDeTelefonoValido(u.getTelefono())) {
-            // El número de teléfono no cumple con los requisitos
-            // Realiza las acciones necesarias en caso de validación fallida
-        }
-
-        if (!esCorreoValido(u.getCorreo())) {
-            // El correo electrónico no cumple con los requisitos
-            // Realiza las acciones necesarias en caso de validación fallida
-        }
-
-        if (!esNumeroDeCedulaValido(u.getCedula())) {
-            // La cédula no cumple con los requisitos
-            // Realiza las acciones necesarias en caso de validación fallida
-        }
-
-        if (!esFechaValida(u.getFechaNacimiento())) {
-            // La fecha de nacimiento no cumple con los requisitos
-            // Realiza las acciones necesarias en caso de validación fallida
+            return true;
         }
 
-        // Todas las validaciones han sido exitosas
-        // Realiza las acciones necesarias en caso de validación exitosa
     }
 
     private boolean esNumeroDeTelefonoValido(String telefono) {
@@ -256,15 +236,13 @@ public class RegisterActivity extends AppCompatActivity {
         return cedula.matches("\\d+");
     }
 
-        private boolean esNulo(EditText et) {
-        if(et.getText().toString().isEmpty()){
-            et.setError("Complete este campo");
-            return false;
-        }else{
-            return true;
-        }
-
+    private boolean esNulo(EditText et) {if(et.getText().toString().isEmpty()){
+        et.setError("Complete este campo");
+        return true;
+    }else{
+        return false;
     }
 
+    }
 
 }

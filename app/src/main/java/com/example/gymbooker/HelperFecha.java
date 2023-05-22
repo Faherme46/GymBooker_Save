@@ -4,9 +4,11 @@ import android.app.DatePickerDialog;
 import android.os.Build;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.gymbooker.Reserva.Reserva;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +17,18 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class HelperFecha {
+
+
+    public String entreHoras(String h1, String h2){
+        LocalTime hora1=stringToTime(h1);
+        LocalTime hora2=stringToTime(h2);
+        Duration duration= null;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+             duration= Duration.between(hora1,hora2);
+        }
+        return duration.toString();
+    }
 
     public static String timeToString(LocalTime hora){
 
@@ -110,7 +124,7 @@ public class HelperFecha {
     }
 
 
-    public void mostrarSelectorFecha(EditText et) {
+    public void mostrarSelectorFecha(TextView et) {
         final Calendar calendar = Calendar.getInstance();
         int añoActual = calendar.get(Calendar.YEAR);
         int mesActual = calendar.get(Calendar.MONTH);

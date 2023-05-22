@@ -63,12 +63,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.562" />
 
-    <EditText
+    <TextView
         android:id="@+id/txthora1"
         android:layout_width="80dp"
         android:layout_height="55dp"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
         android:hint="@string/hh"
         android:inputType="date"
         android:textSize="20sp"
@@ -129,12 +130,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.693" />
 
-    <EditText
+    <TextView
         android:id="@+id/txthora2"
         android:layout_width="80dp"
         android:layout_height="55dp"
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
+        android:gravity="center_horizontal|center_vertical"
         android:hint="@string/hh"
         android:inputType="date"
         android:textSize="20sp"
@@ -160,7 +162,7 @@
         app:layout_constraintVertical_bias="0.32"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtfecha"
         android:layout_width="170dp"
         android:layout_height="54dp"
@@ -171,7 +173,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
+        android:gravity="center_vertical"
         app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -220,7 +222,7 @@
         android:layout_height="52dp"
         android:background="@drawable/general_button"
         android:fontFamily="@font/vampiro_one"
-        android:onClick="guardar"
+        android:onClick="onClickGuardarReserva"
         android:text="@string/Agendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

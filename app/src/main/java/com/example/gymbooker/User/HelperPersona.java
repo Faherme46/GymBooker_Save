@@ -89,6 +89,7 @@ public class HelperPersona {
         myUserService.postUser(toPostUser).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("Carga exitosa","");
             }
 
             @Override
