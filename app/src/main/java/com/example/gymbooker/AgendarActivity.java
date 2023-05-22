@@ -69,7 +69,6 @@ public class AgendarActivity extends AppCompatActivity {
 
 
     }
-    //todo añadir selector
 
     public void guardar(View view) {
 

@@ -102,6 +102,14 @@ public class HelperFecha {
         return  localDate;
     }
 
+    public String formatoFecha(String fecha){
+        LocalDate local= toLocalDate(fecha);
+
+        return local.toString();
+
+    }
+
+
     public void mostrarSelectorFecha(EditText et) {
         final Calendar calendar = Calendar.getInstance();
         int añoActual = calendar.get(Calendar.YEAR);

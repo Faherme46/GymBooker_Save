@@ -9,12 +9,12 @@ public class Tokens implements Serializable {
 
     public Tokens(){}
 
-    public Tokens(String idToken, int isLimited, String theToken, String fVencimiento, String fCreacion, boolean used) {
-        this.idToken = idToken;
+    public Tokens(int isLimited, String theToken, String fVencimiento, String fCreacion, String idToken, boolean used) {
         this.isLimited = isLimited;
         this.theToken = theToken;
         this.fVencimiento = fVencimiento;
         this.fCreacion = fCreacion;
+        this.idToken = idToken;
         this.used = used;
     }
 

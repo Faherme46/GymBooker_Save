@@ -80,7 +80,21 @@ public class HelperPersona {
         return listUsers;
     }
 
-    static int resp=0;
+    public ArrayList<User> getUserDefault() {
+        ArrayList<User> userArrayList=new ArrayList<>();
+
+        User u1=new User(0,"1097608514","3167017821","Emilton","Hernandez","faherme46@gmail.com","2005-04-25","");
+        User u2=new User(0,"1100222657","3167017821","Deniss","Diaz","faherme46@gmail.com","2005-04-25","");
+        User u3=new User(0,"1098653245","3167017821","Camilo","Yepes","faherme46@gmail.com","2005-04-25","");
+
+        userArrayList.add(u1);
+        userArrayList.add(u2);
+        userArrayList.add(u3);
+
+        return userArrayList;
+    }
+
+
     public void postUser(User u){
         int code;
         FirebaseFirestore db = FirebaseFirestore.getInstance();

@@ -26,7 +26,8 @@
             android:fontFamily="@font/kaushan_script"
             android:paddingLeft="60dp"
             android:text="nombre"
-            android:textColor="#070707" />
+            android:textColor="#070707"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textView11"
@@ -45,7 +46,8 @@
             android:layout_weight="1"
             android:fontFamily="@font/kaushan_script"
             android:text="Fecha Limite"
-            android:textColor="#0C0C0C" />
+            android:textColor="#0C0C0C"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -82,7 +84,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="180dp"
         android:fontFamily="@font/kaushan_script"
-        android:text="Usuarios regisrados"
+        android:text="@string/usuarios_regisrados"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"

@@ -70,6 +70,20 @@ public class HelperReservas {
 
         });
 
+
+
+        return listReserva;
+    }
+
+    public ArrayList<Reserva> getReservasDefault(){
+        listReserva=new ArrayList<>();
+        Reserva r1= new Reserva("2023-05-18","1097608514","Abdomen","18:00","20:00");
+        Reserva r2= new Reserva("2023-05-19","1097608514","Abdomen","18:00","20:00");
+        Reserva r3= new Reserva("2023-05-20","1097608514","Abdomen","18:00","20:00");
+
+        listReserva.add(r1);
+        listReserva.add(r2);
+        listReserva.add(r3);
         return listReserva;
     }
 

@@ -218,7 +218,12 @@ public class MainActivity extends AppCompatActivity {
                 btnCopy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //todo copiar al portapapeles
+                        String txt1=t.getTheToken();
+                        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        ClipData clipData = ClipData.newPlainText("Texto copiado", txt1);
+                        if (clipboardManager != null) {
+                            clipboardManager.setPrimaryClip(clipData);
+                            Toast.makeText(MainActivity.this, "Copiado", Toast.LENGTH_SHORT).show();
 
                     }
                 });
