@@ -205,10 +205,9 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean verificarVoid(){
         if(
         esNulo((EditText) txtnombre) ||
-        esNulo((EditText) txtfnacimiento) ||
+        esNulo((EditText) txttelefono) ||
         esNulo((EditText) txtcedula) ||
-        esNulo((EditText) txtcorreo) ||
-        esNulo((EditText) txttelefono) ){
+        esNulo((EditText) txtcorreo)){
             return false;
         }else{
             //todo las verificaciones de cedula, de telefono, de correo

@@ -69,6 +69,19 @@ public class HelperToken {
             }
         });
     }
+  public ArrayList<Tokens> getTokensDefault() {
+
+        ArrayList<Tokens> tokensArrayList=new ArrayList<>();
+        Tokens t1=new Tokens(0,"ab01","2023-05-27","2023-05-16","t1",false);
+        Tokens t2=new Tokens(0,"ab02","2023-05-27","2023-05-16","t1",false);
+        Tokens t3=new Tokens(0,"ab03","2023-05-27","2023-05-16","t1",false);
+
+        tokensArrayList.add(t1);
+        tokensArrayList.add(t2);
+        tokensArrayList.add(t3);
+
+        return listToken;
+    }
 
     /*public void updateToken(Tokens toUpdateToken){
 
@@ -86,6 +99,8 @@ public class HelperToken {
         });
     }
 
+   
+
     public void deleteToken(Tokens toDeleteToken){
 
         Retrofit myRetro = APIService.getInstancia();
@@ -101,6 +116,7 @@ public class HelperToken {
             }
         });
     }*/
+
 
     //Metodo que llama la lista de tokens y busca segun el token indicado
     public Tokens getTokenByToken(String token){
