@@ -3,19 +3,18 @@ package com.example.gymbooker.Tokens;
 import java.io.Serializable;
 
 public class Tokens implements Serializable {
-    private int isLimited;
-    private String theToken,fVencimiento,fCreacion,idToken;
+    private double isLimited;
+    private String theToken,fVencimiento,fCreacion;
     private boolean used;
 
     public Tokens(){}
 
-    public Tokens(int isLimited, String theToken, String fVencimiento, String fCreacion, String idToken, boolean used) {
-        this.isLimited = isLimited;
+    public Tokens( String theToken, String fVencimiento, String fCreacion) {
+        this.isLimited = 0;
         this.theToken = theToken;
         this.fVencimiento = fVencimiento;
         this.fCreacion = fCreacion;
-        this.idToken = idToken;
-        this.used = used;
+        this.used = false;
     }
 
     public boolean isUsed() {
@@ -26,11 +25,7 @@ public class Tokens implements Serializable {
         this.used = used;
     }
 
-    public String getIdToken() {
-        return idToken;
-    }public void setIdToken(String idToken) {
-        this.idToken = idToken;
-    }
+
 
     public String getTheToken() {
         return theToken;
@@ -49,9 +44,9 @@ public class Tokens implements Serializable {
         this.fCreacion = fCreacion;
     }
 
-    public int isLimited(int i) {
+    public double isLimited(int i) {
         return isLimited;
-    } public void setLimited(int limited) {
+    } public void setLimited(double limited) {
         isLimited = limited;
     }
 }

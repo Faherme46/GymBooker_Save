@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +24,13 @@ import java.util.Calendar;
 
 
 public class AgendarActivity extends AppCompatActivity {
-    EditText date, horainicial, horafinal, area;
+
     private boolean isFirstTimeH1 = true;
     private boolean isFirstTimeH2 = true;
-
-    private EditText txtrutina, txthora1, txthora2, txtfecha;
+    private HelperFecha helperFecha=new HelperFecha();
+    private SharedPreferences preferences;
+    private EditText txtrutina;
+    private TextView txthora1, txthora2, txtfecha;
     private Button agendar;
 
     @SuppressLint("MissingInflatedId")
@@ -47,45 +51,46 @@ public class AgendarActivity extends AppCompatActivity {
         txthora1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 mostrarSelectorHora();
             }
         });
         txthora2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 mostrarSelectorHora();
             }
         });
         txtfecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HelperFecha helperFecha=new HelperFecha();
 
                 helperFecha.mostrarSelectorFecha(txtfecha);
             }
         });
-
+        //todo quitar metodo
+        //metodo pora mostrar datos default de prueba
+        datosDefault();
 
     }
 
-    public void guardar(View view) {
+    public void onClickGuardarReserva(View view) {
+        preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
 
         Reserva r = new Reserva();
-        r.setFecha(date.getText().toString());
-        r.setHoraIngreso(horainicial.getText().toString());
-        r.setHoraSalida(horafinal.getText().toString());
-        r.setRutina(area.getText().toString());
-
-
-
-        r.setDuracion("0");
+        r.setFecha(txtfecha.getText().toString());
+        r.setHoraIngreso(txthora1.getText().toString());
+        r.setHoraSalida(txthora2.getText().toString());
+        r.setRutina(txtrutina.getText().toString());
+        r.setCedula(preferences.getString("ccUsuario",""));
+        r.setDuracion(helperFecha.entreHoras(txthora1.getText().toString(),txthora2.getText().toString()));
 
         HelperReservas helperReservas = new HelperReservas();
+        helperReservas.postReserva(r);
 
-        //helperReservas.postReserva(r);
+        Intent i= new Intent(this,MainActivity.class);
+        startActivity(i);
     }
+
         private void mostrarSelectorHora() {
             final Calendar calendar = Calendar.getInstance();
             int horaActual = calendar.get(Calendar.HOUR_OF_DAY);
@@ -112,11 +117,19 @@ public class AgendarActivity extends AppCompatActivity {
                 mostrarSelectorHora();
             }
 
+
             if (isFirstTimeH2) {
                 isFirstTimeH2 = false;
             } else {
                 mostrarSelectorHora();
             }
+    }
+
+    private void datosDefault(){
+        txtrutina.setText("Brazo");
+        txthora1.setText("10:00");
+        txthora2.setText("12:00");
+        txtfecha.setText("2023-05-26");
     }
 
 
