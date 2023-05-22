@@ -28,10 +28,8 @@ public class AgendarActivity extends AppCompatActivity {
     private boolean isFirstTimeH1 = true;
     private boolean isFirstTimeH2 = true;
     private HelperFecha helperFecha=new HelperFecha();
-    private SharedPreferences preferences;
     private EditText txtrutina;
     private TextView txthora1, txthora2, txtfecha;
-    private Button agendar;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,7 +44,7 @@ public class AgendarActivity extends AppCompatActivity {
         txthora1 = findViewById(R.id.txthora1);
         txthora2 = findViewById(R.id.txthora2);
         txtfecha = findViewById(R.id.txtfecha);
-        agendar = findViewById(R.id.btn_agendar);
+        Button agendar = findViewById(R.id.btn_agendar);
 
         txthora1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +72,7 @@ public class AgendarActivity extends AppCompatActivity {
     }
 
     public void onClickGuardarReserva(View view) {
-        preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("gym-booker", MODE_PRIVATE);
 
         Reserva r = new Reserva();
         r.setFecha(txtfecha.getText().toString());

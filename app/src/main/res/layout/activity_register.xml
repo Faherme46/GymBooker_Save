@@ -78,7 +78,7 @@
         android:ems="10"
         android:fontFamily="@font/kaushan_script"
         android:hint="@string/telefono"
-        android:inputType="number"
+        android:inputType="phone"
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +114,7 @@
         android:fontFamily="@font/kaushan_script"
         android:freezesText="true"
         android:hint="@string/FechaNacimiento"
-        android:inputType="datetime"
+
         android:minHeight="48dp"
         android:textAlignment="center"
         android:textSize="18sp"

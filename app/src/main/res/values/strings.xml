@@ -16,7 +16,7 @@
     <string name="configuraciones">Configuraciones</string>
     <string name="registro">Registro</string>
     <string name="correo">Correo</string>
-    <string name="nombre">Nombre:</string>
+    <string name="nombre">Nombre</string>
     <string name="telefono">Telefono:</string>
     <string name="basico">Basico</string>
     <string name="premium">Premium</string>
@@ -67,6 +67,7 @@
 
     <string name="apellido">Apellido</string>
     <string name="usuarios_regisrados">Usuarios regisrados</string>
+    <string name="editar">Editar</string>
 
 
 </resources>

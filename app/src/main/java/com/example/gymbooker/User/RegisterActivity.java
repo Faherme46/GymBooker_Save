@@ -42,8 +42,6 @@ import java.text.SimpleDateFormat;
 
 public class RegisterActivity extends AppCompatActivity {
     private SharedPreferences preferences;
-    private HelperPersona bInstance;
-    private User u;
 
     private boolean isPrimeraVez=true;
 
@@ -113,8 +111,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(verificar()) {
 
-            bInstance = new HelperPersona();
-            u = new User();
+            HelperPersona bInstance = new HelperPersona();
+            User u = new User();
             u.setNombre(txtnombre.getText().toString());
             u.setTelefono(txttelefono.getText().toString());
             u.setCorreo(txtcorreo.getText().toString());
