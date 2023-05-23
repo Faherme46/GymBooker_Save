@@ -1,4 +1,4 @@
-package com.example.gymbooker.UserAdmin;
+package com.example.gymbooker.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbooker.R;
-import com.example.gymbooker.User.User;
+import com.example.gymbooker.Class.User;
 
 import java.util.ArrayList;
 
@@ -66,8 +66,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         }
         public void enlazar(User u){
             nombre.setText(u.getNombre());
-            token.setText(u.getToken());
-            fecha.setText(u.getFechaNacimiento());
+            token.setText(u.getCedula());
+            fecha.setText(u.getTelefono());
+
 
 
             if(onItemClickListener!=null){
@@ -85,6 +86,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     public interface OnItemClickListener{
         void onItemClick(User u, int posicion);
     }
+
 }
 
 

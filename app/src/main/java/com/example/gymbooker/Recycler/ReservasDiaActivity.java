@@ -1,4 +1,4 @@
-package com.example.gymbooker.ReservaAdmin;
+package com.example.gymbooker.Recycler;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,18 +13,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbooker.HelperFecha;
-import com.example.gymbooker.MainActivity;
+import com.example.gymbooker.Helper.HelperFecha;
 import com.example.gymbooker.R;
-import com.example.gymbooker.Reserva.HelperReservas;
-import com.example.gymbooker.Reserva.Reserva;
+import com.example.gymbooker.Helper.HelperReservas;
+import com.example.gymbooker.Class.Reserva;
+import com.example.gymbooker.Adapter.ReservasDiaAdapter;
+import com.example.gymbooker.Retrofit.APIService;
+import com.example.gymbooker.Retrofit.ReservaService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class ReservasDiaActivity extends AppCompatActivity {
-    private ArrayList<Reserva> ListaReservas, listaFinal;
+    private ArrayList<Reserva> ListaReservas=new ArrayList<>();
+    private ArrayList<Reserva> listaFinal;
     private RecyclerView rvReservas;
     private TextView fechadia;
     private String fechaElegida;
@@ -41,12 +48,14 @@ public class ReservasDiaActivity extends AppCompatActivity {
         listaFinal = new ArrayList<>();
         LoadData();
         fechadia = findViewById(R.id.fechaElegidaDiaCaja);
+        LoadData();
         fechadia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 helperFecha.mostrarSelectorFecha(fechadia);
                 fechaElegida=fechadia.getText().toString();
                 fechaElegida=helperFecha.formatoFecha(fechaElegida);
+                LoadData();
             }
         });
         fechadia.setText(fechaElegida);
@@ -108,9 +117,37 @@ public class ReservasDiaActivity extends AppCompatActivity {
 
 
     public void LoadData() {
+        ListaReservas.clear();
 
-        HelperReservas helperReservas=new HelperReservas();
-        ListaReservas=helperReservas.getReservas();
+        Retrofit myRetro = APIService.getInstancia();
+        ReservaService myReservaService = myRetro.create(ReservaService.class);
+
+        myReservaService.getAllReservas().enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Map<String, Map> datos = (Map<String, Map>) response.body();
+
+                for (Map.Entry<String, Map> item : datos.entrySet()){
+                    Reserva eachReserva = new Reserva();
+                    eachReserva.setCedula((String) item.getValue().get("cedula"));
+                    eachReserva.setFecha((String) item.getValue().get("fecha"));
+                    eachReserva.setDuracion((String) item.getValue().get("duracion"));
+                    eachReserva.setEstado((double) item.getValue().get("estado"));
+                    eachReserva.setHoraIngreso((String) item.getValue().get("hIngreso"));
+                    eachReserva.setHoraSalida((String) item.getValue().get("hSalida"));
+                    eachReserva.setRutina((String) item.getValue().get("rutina"));
+                    ListaReservas.add(eachReserva);
+                }
+                myAdapter.setDataSet(ListaReservas);
+
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
         for (Reserva r:
              ListaReservas) {
             if(r.getFecha().equals(fechaElegida)){

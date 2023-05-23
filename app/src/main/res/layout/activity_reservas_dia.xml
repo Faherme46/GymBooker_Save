@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="16dp"
     android:background="@drawable/fondo2"
-    tools:context=".ReservaAdmin.ReservasDiaActivity">
+    tools:context=".Recycler.ReservasDiaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

@@ -5,22 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo3"
-    tools:context=".UserAdmin.UsersActivity">
+    tools:context=".Recycler.UsersActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="9dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/rvUsers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUsers">
 
         <TextView
             android:id="@+id/textView12"
-            android:layout_width="wrap_content"
+            android:layout_width="74dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/kaushan_script"
@@ -31,7 +30,7 @@
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/kaushan_script"
@@ -45,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/kaushan_script"
-            android:text="@string/fExpiracion"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/telefono"
             android:textColor="#0C0C0C"
             android:textSize="16sp" />
 
@@ -66,13 +66,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUsers"
-        android:layout_width="346dp"
-        android:layout_height="476dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="410dp"
+        android:layout_height="604dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUsers">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
     </androidx.recyclerview.widget.RecyclerView>
 

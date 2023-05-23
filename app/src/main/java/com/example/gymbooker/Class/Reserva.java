@@ -1,8 +1,6 @@
-package com.example.gymbooker.Reserva;
+package com.example.gymbooker.Class;
 
-import android.os.Build;
-
-import com.example.gymbooker.HelperFecha;
+import com.example.gymbooker.Helper.HelperFecha;
 
 import java.io.Serializable;
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo3"
-    tools:context=".User.RegisterActivity">
+    tools:context=".RegisterActivity">
 
     <ImageButton
         android:id="@+id/back_register"
@@ -130,52 +130,34 @@
         android:layout_width="123dp"
         android:layout_height="39dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="76dp"
         android:background="@drawable/general_button"
         android:fontFamily="@font/vampiro_one"
         android:onClick="onClickGuardar"
         android:text="@string/continuar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signin_google"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_nacimiento"
-        app:layout_constraintVertical_bias="0.045">
-
-
-    </Button>
-
-    <Button
-
-        android:id="@+id/btn_cancelar2"
-
-        android:layout_width="146dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="92dp"
-        android:background="@drawable/shape_borde_lineas"
-        android:fontFamily="@font/vampiro_one"
-        android:onClick="onClickGuardar"
-        android:text="@string/cancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancelar2"
         app:layout_constraintTop_toBottomOf="@+id/ed_nacimiento">
 
 
     </Button>
 
     <Button
-        android:id="@+id/signin_google"
-        android:layout_width="171dp"
+        android:id="@+id/btn_cancelar2"
+        android:layout_width="123dp"
         android:layout_height="41dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/general_button"
         android:fontFamily="@font/vampiro_one"
         android:onClick="onClickSignInGoogle"
-        android:text="Continua con google"
+        android:text="@string/cancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_nacimiento" />
+        app:layout_constraintTop_toTopOf="@+id/btn_registrar" />
 
     <EditText
         android:id="@+id/ed_apellido"

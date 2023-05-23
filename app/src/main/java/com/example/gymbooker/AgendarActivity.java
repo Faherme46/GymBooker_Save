@@ -1,16 +1,12 @@
 package com.example.gymbooker;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,8 +16,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.example.gymbooker.Reserva.HelperReservas;
-import com.example.gymbooker.Reserva.Reserva;
+import com.example.gymbooker.Helper.HelperFecha;
+import com.example.gymbooker.Helper.HelperReservas;
+import com.example.gymbooker.Class.Reserva;
 
 import java.util.Calendar;
 

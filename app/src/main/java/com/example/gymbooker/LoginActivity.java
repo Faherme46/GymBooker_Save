@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,11 +12,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gymbooker.Tokens.HelperToken;
-import com.example.gymbooker.Tokens.Tokens;
-import com.example.gymbooker.User.RegisterActivity;
+import com.example.gymbooker.Retrofit.APIService;
+import com.example.gymbooker.Retrofit.TokensService;
+import com.example.gymbooker.Helper.HelperToken;
+import com.example.gymbooker.Class.Tokens;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,14 +32,13 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnlogin;
     private SharedPreferences preferences;
     private HelperToken helperToken = new HelperToken();
-    private ArrayList<Tokens> tokensArrayList = helperToken.getTokens();
+    public ArrayList<Tokens> tokensArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-
 
         txtuser=findViewById(R.id.txtTokenLogin);
         preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
@@ -44,7 +51,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public  void clickIniciar( View view) {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadTokens();
+    }
+
+    public  void clickIniciar(View view) {
 
 
         SharedPreferences.Editor editor= preferences.edit();
@@ -59,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (t1 != null) {
                 if (t1.isUsed() == false) {
-                    Intent i = new Intent(this, com.example.gymbooker.User.RegisterActivity.class);
+                    Intent i = new Intent(this, RegisterActivity.class);
                     i.putExtra("txtToken", loginUser);
                     startActivity(i);
                     finish();
@@ -95,5 +108,37 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
         builder.show();
+    }
+    private void loadTokens(){
+        tokensArrayList.clear();
+        Retrofit myRetro = APIService.getInstancia();
+        TokensService myTokensService = myRetro.create(TokensService.class);
+
+        myTokensService.getAllTokens().enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("mi_log",response.body().toString());
+
+                Map<String, Map> datos = (Map<String, Map>) response.body();
+
+                for (Map.Entry<String, Map> item : datos.entrySet()){
+                    Tokens eachToken = new Tokens();
+                    eachToken.setId((String) item.getKey());
+                    eachToken.setTheToken((String) item.getValue().get("theToken"));
+                    eachToken.setfCreacion((String) item.getValue().get("fCreacion"));
+                    eachToken.setLimited((double) item.getValue().get("isLimited"));
+                    eachToken.setfVencimiento((String) item.getValue().get("fVencimiento"));
+                    tokensArrayList.add(eachToken);
+
+                }
+
+            }
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Log.d("Fallo",t.getMessage());
+
+            }
+        });
+
     }
     }

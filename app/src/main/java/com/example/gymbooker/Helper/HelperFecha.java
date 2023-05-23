@@ -1,12 +1,11 @@
-package com.example.gymbooker;
+package com.example.gymbooker.Helper;
 
 import android.app.DatePickerDialog;
 import android.os.Build;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.gymbooker.Reserva.Reserva;
+import com.example.gymbooker.Class.Reserva;
 
 import java.time.Duration;
 import java.time.LocalDate;

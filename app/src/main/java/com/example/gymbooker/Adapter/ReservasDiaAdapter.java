@@ -1,4 +1,4 @@
-package com.example.gymbooker.ReservaAdmin;
+package com.example.gymbooker.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbooker.R;
-import com.example.gymbooker.Reserva.Reserva;
-import com.example.gymbooker.User.HelperPersona;
-import com.example.gymbooker.User.User;
+import com.example.gymbooker.Class.Reserva;
+import com.example.gymbooker.Helper.HelperPersona;
+import com.example.gymbooker.Class.User;
 
 import java.util.ArrayList;
 
@@ -116,5 +116,9 @@ public class ReservasDiaAdapter extends RecyclerView.Adapter<ReservasDiaAdapter.
         void onItemClick(Reserva myprod, int posicion);
         void onItemBtnAsisteClick(Reserva myprod, int posicion);
         void onItemBtnCancelaClick(Reserva myprod, int posicion);
+    }
+
+    private void getUser(){
+
     }
 }

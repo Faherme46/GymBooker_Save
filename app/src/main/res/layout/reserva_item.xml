@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_borde_lineas"
-    tools:context=".Reserva.Reserva">
+    tools:context=".Class.Reserva">
 
     <TextView
         android:id="@+id/tv_fecha_title"

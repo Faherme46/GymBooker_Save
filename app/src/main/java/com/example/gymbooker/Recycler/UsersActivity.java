@@ -1,4 +1,4 @@
-package com.example.gymbooker.UserAdmin;
+package com.example.gymbooker.Recycler;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,19 +13,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.R;
-import com.example.gymbooker.Reserva.ReservasActivity;
-import com.example.gymbooker.User.HelperPersona;
-import com.example.gymbooker.User.User;
+import com.example.gymbooker.Retrofit.APIService;
+import com.example.gymbooker.Retrofit.UserService;
+import com.example.gymbooker.Class.User;
+import com.example.gymbooker.Adapter.UsersAdapter;
 import com.example.gymbooker.UsuarioActivity;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class UsersActivity extends AppCompatActivity {
 
-    private ArrayList<User> listUser;
+    private ArrayList<User> listUser=new ArrayList<>();
 
     private RecyclerView recyclerView;
     private ImageButton back;
+    private UsersAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +43,7 @@ public class UsersActivity extends AppCompatActivity {
         back=findViewById(R.id.back_users);
         LoadData();
 
-        UsersAdapter adapter = new UsersAdapter(listUser);
+        adapter = new UsersAdapter(listUser);
         adapter.setOnItemClickListener(new UsersAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(User u, int posicion) {
@@ -87,7 +95,35 @@ public class UsersActivity extends AppCompatActivity {
 
 
     public void LoadData(){
-        HelperPersona helperPersona=new HelperPersona();
-        listUser=helperPersona.getUsers();
+        listUser.clear();
+        Retrofit myRetro = APIService.getInstancia();
+        UserService myUserService = myRetro.create(UserService.class);
+
+        myUserService.getAllUsers().enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
+                Map<String, Map> datos = (Map<String, Map>) response.body();
+
+                for (Map.Entry<String, Map> item : datos.entrySet()){
+                    User eachUser = new User();
+                    eachUser.setCedula((String) item.getValue().get("cedula"));
+                    eachUser.setNombre((String) item.getValue().get("nombre"));
+                    eachUser.setApellido((String) item.getValue().get("apellido"));
+                    eachUser.setTelefono((String) item.getValue().get("telefono"));
+                    eachUser.setCorreo((String) item.getValue().get("correo"));
+                    eachUser.setFechaNacimiento((String) item.getValue().get("fechaNacimiento"));
+                    eachUser.setIsAdmin((String) item.getValue().get("isAdmin"));
+                    eachUser.setToken((String) item.getValue().get("token"));
+                    listUser.add(eachUser);
+                }
+                adapter.setListUsers(listUser);
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
     }
 }

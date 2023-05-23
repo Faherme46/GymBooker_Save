@@ -1,7 +1,6 @@
 package com.example.gymbooker;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,25 +18,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gymbooker.Reserva.ReservasActivity;
-import com.example.gymbooker.ReservaAdmin.ReservasDiaActivity;
-import com.example.gymbooker.Tokens.HelperToken;
-import com.example.gymbooker.Tokens.Tokens;
+import com.example.gymbooker.Helper.HelperFecha;
+import com.example.gymbooker.Recycler.ReservasActivity;
+import com.example.gymbooker.Recycler.ReservasDiaActivity;
+import com.example.gymbooker.Helper.HelperToken;
+import com.example.gymbooker.Class.Tokens;
 
-import com.example.gymbooker.UserAdmin.UsersActivity;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.gymbooker.Recycler.UsersActivity;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MainActivity extends AppCompatActivity {
