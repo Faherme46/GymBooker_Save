@@ -28,6 +28,7 @@ public class ReservasDiaActivity extends AppCompatActivity {
     private RecyclerView rvReservas;
     private EditText fechadia;
     private String fechaElegida;
+    private ReservasDiaAdapter myAdapter;
 
 
     @Override
@@ -57,7 +58,7 @@ public class ReservasDiaActivity extends AppCompatActivity {
         rvReservas = findViewById(R.id.rvReservasDia);
 
 
-        ReservasDiaAdapter myAdapter = new ReservasDiaAdapter(listaFinal);
+        myAdapter = new ReservasDiaAdapter(listaFinal);
 
         myAdapter.setOnItemClickListener(new ReservasDiaAdapter.onItemClickListener() {
             @Override

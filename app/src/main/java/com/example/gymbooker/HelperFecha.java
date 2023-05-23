@@ -23,11 +23,18 @@ public class HelperFecha {
         LocalTime hora1=stringToTime(h1);
         LocalTime hora2=stringToTime(h2);
         Duration duration= null;
-
+        String formattedDuration=null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
              duration= Duration.between(hora1,hora2);
+            // Obtener las horas y minutos de la duración
+            long hours = duration.toHours();
+            long minutes = duration.toMinutes() % 60;
+
+            // Formatear la duración en formato "hh:00"
+            formattedDuration = String.format("%02d:%02d", hours,minutes);
         }
-        return duration.toString();
+
+        return formattedDuration;
     }
 
     public static String timeToString(LocalTime hora){
@@ -99,7 +106,7 @@ public class HelperFecha {
         ArrayList<Reserva> futuras=new ArrayList<>();
         for (Reserva r : listReservas) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                if (fechaActual.isBefore(toLocalDate(r.getFecha()))) {
+                if (fechaActual.isBefore(toLocalDate(r.getFecha()))||fechaActual.isEqual(toLocalDate(r.getFecha()))) {
                     futuras.add(r);
                 }
             }
@@ -133,7 +140,21 @@ public class HelperFecha {
         DatePickerDialog datePickerDialog = new DatePickerDialog(et.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int año, int mes, int dia) {
-                String fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
+                String fechaSeleccionada=null;
+                if(mes<10) {
+                    if (dia<10) {
+                        fechaSeleccionada = año + "-0" + (mes + 1) + "-0" + dia;
+                    }else{
+                        fechaSeleccionada = año + "-0" + (mes + 1) + "-" + dia;
+                    }
+
+                }else{
+                    if (dia<10) {
+                        fechaSeleccionada = año + "-" + (mes + 1) + "-0" + dia;
+                    }else{
+                        fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
+                    }
+                }
                 et.setText(fechaSeleccionada);
             }
 
