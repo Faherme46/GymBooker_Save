@@ -6,11 +6,13 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -30,6 +32,7 @@ public class AgendarActivity extends AppCompatActivity {
     private HelperFecha helperFecha=new HelperFecha();
     private EditText txtrutina;
     private TextView txthora1, txthora2, txtfecha;
+    private ImageView back;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,8 +47,16 @@ public class AgendarActivity extends AppCompatActivity {
         txthora1 = findViewById(R.id.txthora1);
         txthora2 = findViewById(R.id.txthora2);
         txtfecha = findViewById(R.id.txtfecha);
+        back = findViewById(R.id.back_agendar);
         Button agendar = findViewById(R.id.btn_agendar);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(AgendarActivity.this,MainActivity.class);
+                startActivity(back);
+            }
+        });
         txthora1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
