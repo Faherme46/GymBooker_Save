@@ -20,7 +20,6 @@ public class HelperReservas {
     ArrayList<Reserva> listReserva = new ArrayList<>();
 
     public ArrayList<Reserva> getReservas() {
-
         Retrofit myRetro = APIService.getInstancia();
         ReservaService myReservaService = myRetro.create(ReservaService.class);
 
@@ -41,6 +40,7 @@ public class HelperReservas {
                     eachReserva.setRutina((String) item.getValue().get("rutina"));
                     listReserva.add(eachReserva);
                 }
+
             }
 
             @Override
@@ -51,6 +51,7 @@ public class HelperReservas {
 
         return listReserva;
     }
+
 
     public ArrayList<Reserva> getReservasDefault(){
         listReserva=new ArrayList<>();

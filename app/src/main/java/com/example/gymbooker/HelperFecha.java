@@ -23,11 +23,18 @@ public class HelperFecha {
         LocalTime hora1=stringToTime(h1);
         LocalTime hora2=stringToTime(h2);
         Duration duration= null;
-
+        String formattedDuration=null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
              duration= Duration.between(hora1,hora2);
+            // Obtener las horas y minutos de la duración
+            long hours = duration.toHours();
+            long minutes = duration.toMinutes() % 60;
+
+            // Formatear la duración en formato "hh:00"
+            formattedDuration = String.format("%02d:%02d", hours,minutes);
         }
-        return duration.toString();
+
+        return formattedDuration;
     }
 
     public static String timeToString(LocalTime hora){

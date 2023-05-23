@@ -1,5 +1,7 @@
 package com.example.gymbooker.Reserva;
 
+
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbooker.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHolder> {
@@ -21,8 +24,17 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHo
     private int b;
     private ConstraintLayout constraintLayout;
 
-    public void setDataSet(ArrayList<Reserva> dataSet) {
-        DataSet = dataSet;
+
+    public void setDataSet(ArrayList<Reserva> dataSet, String cc) {
+        ArrayList<Reserva> listaFiltrada=new ArrayList<>();
+        //filtra por cedula del usuario
+        for (Reserva r:
+                dataSet) {
+            if (r.getCedula().equals(cc)){
+                listaFiltrada.add(r);
+            }
+        }
+        DataSet = listaFiltrada;
         notifyDataSetChanged();
     }
 
@@ -77,6 +89,7 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHo
             tv_fecha.setText(myres.getFecha());
             tv_hora.setText(myres.getHoraIngreso());
             tv_duracion.setText(myres.getDuracion());
+            tv_rutina.setText(myres.getRutina());
 
             if(onItemClickListener!=null){
 

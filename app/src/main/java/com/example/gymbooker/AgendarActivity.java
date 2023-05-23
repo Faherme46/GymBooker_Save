@@ -122,12 +122,13 @@ public class AgendarActivity extends AppCompatActivity {
                 mostrarSelectorHora();
             }
     }
+    //todo evitar que ponga una hora inicial despues de la final
 
     private void datosDefault(){
-        txtrutina.setText("Brazo");
-        txthora1.setText("10:00");
-        txthora2.setText("12:00");
-        txtfecha.setText("2023-05-26");
+        txtrutina.setText("Abdomen");
+        txthora1.setText("16:00");
+        txthora2.setText("18:00");
+        txtfecha.setText("2023-05-17");
     }
 
 
