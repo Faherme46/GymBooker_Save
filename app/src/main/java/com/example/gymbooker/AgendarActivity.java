@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -96,7 +97,24 @@ public class AgendarActivity extends AppCompatActivity {
         HelperReservas helperReservas = new HelperReservas();
         helperReservas.postReserva(r);
 
-        Intent i= new Intent(this,MainActivity.class);
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"denis.fedi@gmail.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "GYMBOOKER - Reserva exitosa!");
+        i.putExtra(Intent.EXTRA_TEXT   , "Acabas de realizar una reserva a través de la aplicación GymBooker. A continuación puedes ver la información de tu reserva. Feliz entrenamiento!" +
+                                                "\n\n\n\nFecha: " + r.getFecha().toString()
+                                             + "\n\nHora de ingreso: " + r.getHoraIngreso()
+                                             + "\n\nHora de salida: " + r.getHoraSalida()
+                                             + "\n\nRutina: " + r.getRutina()
+                                             + "\n\nDuración: " + r.getDuracion());
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(AgendarActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
+
+
+        Intent intent = new Intent(this,MainActivity.class);
         startActivity(i);
     }
 
