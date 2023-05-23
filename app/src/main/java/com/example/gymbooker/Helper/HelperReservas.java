@@ -1,12 +1,10 @@
-package com.example.gymbooker.Reserva;
+package com.example.gymbooker.Helper;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.gymbooker.MainActivity;
+import com.example.gymbooker.Class.Reserva;
 import com.example.gymbooker.Retrofit.APIService;
 import com.example.gymbooker.Retrofit.ReservaService;
-import com.example.gymbooker.User.User;
 
 import java.util.ArrayList;
 import java.util.Map;

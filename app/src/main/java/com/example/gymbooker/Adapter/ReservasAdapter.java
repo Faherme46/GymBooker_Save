@@ -1,7 +1,6 @@
-package com.example.gymbooker.Reserva;
+package com.example.gymbooker.Adapter;
 
 
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbooker.HelperFecha;
+import com.example.gymbooker.Class.Reserva;
+import com.example.gymbooker.Helper.HelperFecha;
 import com.example.gymbooker.R;
 
-import org.checkerframework.checker.units.qual.A;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHolder> {
@@ -41,9 +38,12 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHo
         //filtrar por fecha
         HelperFecha helperFecha=new HelperFecha();
         if (historial){
-            listaFinal=helperFecha.fechasPasadas(listaFiltrada);
 
-            b=View.INVISIBLE;
+            if(b==View.INVISIBLE){
+
+            }else {
+                listaFinal = helperFecha.fechasPasadas(listaFiltrada);
+            }
         }else{
             listaFinal=helperFecha.fechasFuturas(listaFiltrada);
 

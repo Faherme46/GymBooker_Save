@@ -1,27 +1,13 @@
-package com.example.gymbooker.User;
+package com.example.gymbooker.Helper;
 
-
-import static android.content.ContentValues.TAG;
 
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.example.gymbooker.Retrofit.APIService;
-import com.example.gymbooker.Retrofit.TokensService;
 import com.example.gymbooker.Retrofit.UserService;
-import com.example.gymbooker.Tokens.Tokens;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.gymbooker.Class.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;

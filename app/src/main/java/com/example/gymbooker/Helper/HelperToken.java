@@ -1,17 +1,14 @@
-package com.example.gymbooker.Tokens;
+package com.example.gymbooker.Helper;
 
 import static android.app.PendingIntent.getActivity;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.Retrofit.APIService;
 import com.example.gymbooker.Retrofit.TokensService;
-import com.google.rpc.Help;
+import com.example.gymbooker.Class.Tokens;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -129,8 +126,7 @@ public class HelperToken {
 
     //Metodo que llama la lista de tokens y busca segun el token indicado
     public Tokens getTokenByToken(String token,ArrayList<Tokens> arrayList){
-        //todo cambiar al metodo getTokens real
-        arrayList = getTokensDefault();
+
         for (Tokens j:
                 arrayList) {
             if(j.getTheToken().equals(token)){

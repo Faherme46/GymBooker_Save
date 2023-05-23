@@ -1,4 +1,4 @@
-package com.example.gymbooker.User;
+package com.example.gymbooker;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,11 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gymbooker.HelperFecha;
-import com.example.gymbooker.LoginActivity;
-import com.example.gymbooker.MainActivity;
-import com.example.gymbooker.R;
-
+import com.example.gymbooker.Helper.HelperFecha;
+import com.example.gymbooker.Helper.HelperPersona;
+import com.example.gymbooker.Class.User;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,8 +30,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import com.example.gymbooker.Tokens.HelperToken;
-import com.example.gymbooker.Tokens.Tokens;
+import com.example.gymbooker.Helper.HelperToken;
+import com.example.gymbooker.Class.Tokens;
 
 import java.util.ArrayList;
 
@@ -150,11 +148,12 @@ public class RegisterActivity extends AppCompatActivity {
             u.setCorreo(txtcorreo.getText().toString());
             u.setCedula(txtcedula.getText().toString());
             u.setFechaNacimiento(txtfnacimiento.getText().toString());
+            u.setApellido(txtApellido.getText().toString());
 
             String txt1 = getIntent().getStringExtra("txtToken");
             Tokens token1 = helperToken.getTokenByToken(txt1, tokensArrayList);
 
-            if (helperPersona.getUserByCedula(u.getCedula(), userArrayList) == null) {
+
 
                 //Si es el Admin
                 if (preferences.getString("user", "").equals("admin")) {
@@ -215,10 +214,6 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        } else {
-            Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
-
-        }
 
     }
     private boolean verificar(){

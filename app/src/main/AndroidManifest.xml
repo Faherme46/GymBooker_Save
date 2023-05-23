@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ReservaAdmin.ReservasDiaActivity"
+            android:name=".Recycler.ReservasDiaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -28,16 +28,9 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserAdmin.UsersActivity"
+            android:name=".Recycler.UsersActivity"
             android:exported="true">
 
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".GoogleActivity"
-            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -51,10 +44,10 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Reserva.ReservasAdapter"
+            android:name=".Adapter.ReservasAdapter"
             android:exported="false" />
         <activity
-            android:name=".User.RegisterActivity"
+            android:name=".RegisterActivity"
             android:exported="false"
             android:parentActivityName=".LoginActivity"/>
         <activity
@@ -71,7 +64,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Reserva.ReservasActivity"
+            android:name=".Recycler.ReservasActivity"
             android:exported="false" />
 
         <meta-data

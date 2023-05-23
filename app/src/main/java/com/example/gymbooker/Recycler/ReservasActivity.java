@@ -1,10 +1,9 @@
-package com.example.gymbooker.Reserva;
+package com.example.gymbooker.Recycler;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbooker.HelperFecha;
+import com.example.gymbooker.Class.Reserva;
+import com.example.gymbooker.Helper.HelperReservas;
+import com.example.gymbooker.Helper.HelperFecha;
 import com.example.gymbooker.R;
+import com.example.gymbooker.Adapter.ReservasAdapter;
 import com.example.gymbooker.Retrofit.APIService;
 import com.example.gymbooker.Retrofit.ReservaService;
 
@@ -57,6 +59,13 @@ public class ReservasActivity extends AppCompatActivity {
         Boolean historial= i.getBooleanExtra("historial",false);
         HelperFecha helperFecha=new HelperFecha();
         if (historial){
+            preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
+            if(preferences.getString("user","user")=="admin"){
+
+                tv_misreservastitle=findViewById(R.id.tv_misreservastitle);
+                tv_misreservastitle.setText("HISTORIAL DE USUARIO");
+                b=View.INVISIBLE;
+            }
             listaFinal=helperFecha.fechasPasadas(ListaReservas);
 
             b=View.INVISIBLE;

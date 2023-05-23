@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="16dp"
     android:background="@drawable/fondo2"
-    tools:context=".ReservaAdmin.ReservasDiaActivity">
+    tools:context=".Recycler.ReservasDiaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <TextView
             android:id="@+id/fechaElegidaDiaCaja"
             android:layout_width="132dp"
             android:layout_height="48dp"
@@ -25,11 +25,14 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="58dp"
             android:autofillHints=""
-            android:ems="10"
+            android:ems="14"
             android:fontFamily="@font/advent_pro_semibold"
+            android:gravity="center_horizontal|center_vertical"
             android:hint="@string/ejemploFecha"
-            android:inputType="datetime"
             android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -45,6 +48,7 @@
             android:text="@string/elegirFecha"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_misreservastitle2" />
 
@@ -71,11 +75,11 @@
         android:layout_width="0dp"
         android:layout_height="578dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

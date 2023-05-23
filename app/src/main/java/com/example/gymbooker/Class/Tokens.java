@@ -1,4 +1,4 @@
-package com.example.gymbooker.Tokens;
+package com.example.gymbooker.Class;
 
 import com.google.firebase.firestore.Exclude;
 

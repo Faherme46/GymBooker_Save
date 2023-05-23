@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo3"
-    tools:context=".Reserva.ReservasActivity">
+    tools:context=".Recycler.ReservasActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_reservas"
