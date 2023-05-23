@@ -1,15 +1,12 @@
 package com.example.gymbooker.User;
 
 import android.annotation.SuppressLint;
-import android.app.Person;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,8 +23,6 @@ import com.example.gymbooker.MainActivity;
 import com.example.gymbooker.R;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.SignInClient;
-import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,8 +35,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.example.gymbooker.Tokens.HelperToken;
 import com.example.gymbooker.Tokens.Tokens;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -56,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isPrimeraVez=true;
 
     private TextView txtnombre,txttelefono,txtcorreo,txtcedula,txtfnacimiento,txtApellido;
-    private Button btmcontinuar;
+    private Button btmcontinuar, btnCancelar;
 
     private ImageView back;
 
@@ -66,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
     public RegisterActivity() throws ApiException {
     }
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -86,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtcedula = findViewById(R.id.ed_cedula);
         txtfnacimiento = findViewById(R.id.ed_nacimiento);
         btmcontinuar = findViewById(R.id.btn_registrar);
+        btnCancelar = findViewById(R.id.btn_cancelar2);
 
         back = findViewById(R.id.back_register);
 
@@ -106,6 +101,15 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent back = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(back);
+                finish();
+            }
+        });
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(back);
+                finish();
             }
         });
 
@@ -209,6 +213,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "El Usuario ya existe", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(i);
+                finish();
             }
         } else {
             Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
