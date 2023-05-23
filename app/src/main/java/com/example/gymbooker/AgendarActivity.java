@@ -34,6 +34,7 @@ public class AgendarActivity extends AppCompatActivity {
     private EditText txtrutina;
     private TextView txthora1, txthora2, txtfecha;
     private ImageView back;
+    private SharedPreferences preferences;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -99,7 +100,7 @@ public class AgendarActivity extends AppCompatActivity {
 
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"denis.fedi@gmail.com"});
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{preferences.getString("emailUsuario","DEFAULT")});
         i.putExtra(Intent.EXTRA_SUBJECT, "GYMBOOKER - Reserva exitosa!");
         i.putExtra(Intent.EXTRA_TEXT   , "Acabas de realizar una reserva a través de la aplicación GymBooker. A continuación puedes ver la información de tu reserva. Feliz entrenamiento!" +
                                                 "\n\n\n\nFecha: " + r.getFecha().toString()

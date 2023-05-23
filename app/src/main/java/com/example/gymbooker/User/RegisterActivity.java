@@ -203,6 +203,7 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("logged", 1);
                 editor.putString("ccUsuario", u.getCedula());
+                editor.putString("emailUsuario", u.getCorreo());
                 editor.apply();
 
 
