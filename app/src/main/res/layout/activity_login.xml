@@ -96,7 +96,7 @@
         android:autofillHints=""
         android:fontFamily="@font/kaushan_script"
         android:gravity="center_horizontal|center_vertical"
-        android:onClick="clickRegistro"
+        android:onClick="clickAdmin"
         android:singleLine="false"
         android:text="@string/admin"
         android:textAlignment="center"

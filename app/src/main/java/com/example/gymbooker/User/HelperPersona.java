@@ -52,7 +52,7 @@ public class HelperPersona {
                     eachUser.setTelefono((String) item.getValue().get("telefono"));
                     eachUser.setCorreo((String) item.getValue().get("correo"));
                     eachUser.setFechaNacimiento((String) item.getValue().get("fNacimiento"));
-                    eachUser.setIsAdmin((Integer) item.getValue().get("isAdmin"));
+                    eachUser.setIsAdmin((String) item.getValue().get("isAdmin"));
                     eachUser.setToken((String) item.getValue().get("thetoken"));
                     listUsers.add(eachUser);
                 }
@@ -70,9 +70,9 @@ public class HelperPersona {
     public ArrayList<User> getUserDefault() {
         ArrayList<User> userArrayList=new ArrayList<>();
 
-        User u1=new User(0,"1097608514","3167017821","Emilton","Hernandez","faherme46@gmail.com","2005-04-25","");
-        User u2=new User(0,"1100222657","3167017821","Deniss","Diaz","faherme46@gmail.com","2005-04-25","");
-        User u3=new User(0,"1098653245","3167017821","Camilo","Yepes","faherme46@gmail.com","2005-04-25","");
+        User u1=new User("0","1097608514","3167017821","Emilton","Hernandez","faherme46@gmail.com","2005-04-25","");
+        User u2=new User("0","1100222657","3167017821","Deniss","Diaz","faherme46@gmail.com","2005-04-25","");
+        User u3=new User("0","1098653245","3167017821","Camilo","Yepes","faherme46@gmail.com","2005-04-25","");
 
         userArrayList.add(u1);
         userArrayList.add(u2);
@@ -98,6 +98,16 @@ public class HelperPersona {
         });
     }
 
+    public User getUserByCedula(String cc,ArrayList<User> arrayList) {
+        User usuario=null;
+        for (User u :
+                arrayList) {
+            if (u.getCedula() == cc) {
+                usuario=u;
+            }
+        }
+        return usuario;
+    }
     /*public void updateUser(User toUpdateUser){
 
         Retrofit myRetro = APIService.getInstancia();

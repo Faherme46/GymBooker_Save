@@ -1,10 +1,14 @@
 package com.example.gymbooker.Tokens;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.io.Serializable;
 
 public class Tokens implements Serializable {
     private double isLimited;
     private String theToken,fVencimiento,fCreacion;
+    @Exclude
+    private String id;
     private boolean used;
 
     public Tokens(){}
@@ -25,7 +29,21 @@ public class Tokens implements Serializable {
         this.used = used;
     }
 
+    public double getIsLimited() {
+        return isLimited;
+    }
 
+    public void setIsLimited(double isLimited) {
+        this.isLimited = isLimited;
+    }
+    @Exclude
+    public String getId() {
+        return id;
+    }
+    @Exclude
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTheToken() {
         return theToken;
