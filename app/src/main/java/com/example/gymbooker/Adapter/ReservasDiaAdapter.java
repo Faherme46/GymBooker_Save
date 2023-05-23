@@ -13,8 +13,16 @@ import com.example.gymbooker.R;
 import com.example.gymbooker.Class.Reserva;
 import com.example.gymbooker.Helper.HelperPersona;
 import com.example.gymbooker.Class.User;
+import com.example.gymbooker.Retrofit.APIService;
+import com.example.gymbooker.Retrofit.UserService;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ReservasDiaAdapter extends RecyclerView.Adapter<ReservasDiaAdapter.ViewHolder> {
 
@@ -61,6 +69,7 @@ public class ReservasDiaAdapter extends RecyclerView.Adapter<ReservasDiaAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView nameUser,hInicio,hFin,rutina;
         private Button btnAsiste,btnCancela;
+        private ArrayList<User> userArrayList=new ArrayList<>();
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,14 +82,8 @@ public class ReservasDiaAdapter extends RecyclerView.Adapter<ReservasDiaAdapter.
         }
 
         public void link(Reserva myres){
-            HelperPersona helperPersona=new HelperPersona();
-            User u=helperPersona.getUserByCc(myres.getCedula());
-            if (u!=null){
-                nameUser.setText(u.getNombre());
-            }else{
-                nameUser.setText("Nemo Nobody");
-            }
-            rutina.setText(myres.getRutina());
+            getUser(nameUser,myres.getCedula());
+            rutina.setText(myres.getFecha());
 
             hInicio.setText(String.valueOf(myres.getHoraIngreso()));
             hFin.setText(String.valueOf(myres.getHoraSalida()));
@@ -109,7 +112,46 @@ public class ReservasDiaAdapter extends RecyclerView.Adapter<ReservasDiaAdapter.
                     }
                 });
             }
+
+
         }
+        private void getUser(TextView txt,String cc) {
+
+            Retrofit myRetro = APIService.getInstancia();
+            UserService myUserService = myRetro.create(UserService.class);
+
+            myUserService.getAllUsers().enqueue(new Callback<Object>() {
+                @Override
+                public void onResponse(Call<Object> call, Response<Object> response) {
+
+                    Map<String,Map> datos = (Map<String, Map>) response.body();
+
+                    for (Map.Entry<String, Map> item : datos.entrySet()){
+                        User eachUser = new User();
+                        eachUser.setCedula((String) item.getValue().get("cedula"));
+                        eachUser.setNombre((String) item.getValue().get("nombre"));
+                        eachUser.setApellido((String) item.getValue().get("apellido"));
+                        eachUser.setTelefono((String) item.getValue().get("telefono"));
+                        eachUser.setCorreo((String) item.getValue().get("correo"));
+                        eachUser.setFechaNacimiento((String) item.getValue().get("fNacimiento"));
+                        eachUser.setIsAdmin((String) item.getValue().get("isAdmin"));
+                        eachUser.setToken((String) item.getValue().get("thetoken"));
+                        userArrayList.add(eachUser);
+                    }
+                    for (User u:
+                         userArrayList) {
+                        if(u.getCedula().equals(cc)){
+                            txt.setText(u.getNombre().toString());
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Object> call, Throwable t) {
+
+                }
+            });    }
 
     }
     public interface onItemClickListener{
@@ -118,7 +160,4 @@ public class ReservasDiaAdapter extends RecyclerView.Adapter<ReservasDiaAdapter.
         void onItemBtnCancelaClick(Reserva myprod, int posicion);
     }
 
-    private void getUser(){
-
-    }
 }

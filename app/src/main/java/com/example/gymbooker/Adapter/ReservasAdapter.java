@@ -38,9 +38,12 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHo
         //filtrar por fecha
         HelperFecha helperFecha=new HelperFecha();
         if (historial){
-            listaFinal=helperFecha.fechasPasadas(listaFiltrada);
 
-            b=View.INVISIBLE;
+            if(b==View.INVISIBLE){
+
+            }else {
+                listaFinal = helperFecha.fechasPasadas(listaFiltrada);
+            }
         }else{
             listaFinal=helperFecha.fechasFuturas(listaFiltrada);
 

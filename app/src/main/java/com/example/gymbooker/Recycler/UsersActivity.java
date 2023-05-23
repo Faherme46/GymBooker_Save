@@ -47,34 +47,39 @@ public class UsersActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new UsersAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(User u, int posicion) {
-               AlertDialog.Builder builder = new AlertDialog.Builder(UsersActivity.this);
-                builder.setTitle(u.getNombre().toString())
-                        .setItems(R.array.opciones, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
-                                Class c = ReservasActivity.class;
-                                Intent j= new Intent(UsersActivity.this,c);
 
-                                Boolean historial=false;
-                                if(which==0) {
-                                    c = ReservasActivity.class;
-                                    historial = true;
-                                }else if(which==1) {
-                                    c = ReservasActivity.class;
-                                    historial = false;
-                                }else if(which==2) {
-                                    c = UsuarioActivity.class;
-                                    j.putExtra("user",u);
-                                    historial = false;
-                                }
-                                j.setClass(UsersActivity.this,c);
-                                j.putExtra("historial",historial);
-                                startActivity(j);
-                            }
-                        });
-                builder.create();
-                builder.show();
+                Intent i = new Intent(UsersActivity.this,UsuarioActivity.class);
+                i.putExtra("user",u);
+                i.putExtra("historial",false);
+                startActivity(i);
+//               AlertDialog.Builder builder = new AlertDialog.Builder(UsersActivity.this);
+//                builder.setTitle(u.getNombre().toString())
+//                        .setItems(R.array.opciones, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                // The 'which' argument contains the index position
+//                                // of the selected item
+//                                Class c = ReservasActivity.class;
+//                                Intent j= new Intent(UsersActivity.this,c);
+//
+//                                Boolean historial=false;
+//                                if(which==0) {
+//                                    c = ReservasActivity.class;
+//                                    historial = true;
+//                                }else if(which==1) {
+//                                    c = ReservasActivity.class;
+//                                    historial = false;
+//                                }else if(which==2) {
+//                                    c = UsuarioActivity.class;
+//                                    j.putExtra("user",u);
+//                                    historial = false;
+//                                }
+//                                j.setClass(UsersActivity.this,c);
+//                                j.putExtra("historial",historial);
+//                                startActivity(j);
+//                            }
+//                        });
+//                builder.create();
+//                builder.show();
 
 
             }

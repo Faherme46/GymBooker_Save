@@ -59,6 +59,13 @@ public class ReservasActivity extends AppCompatActivity {
         Boolean historial= i.getBooleanExtra("historial",false);
         HelperFecha helperFecha=new HelperFecha();
         if (historial){
+            preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
+            if(preferences.getString("user","user")=="admin"){
+
+                tv_misreservastitle=findViewById(R.id.tv_misreservastitle);
+                tv_misreservastitle.setText("HISTORIAL DE USUARIO");
+                b=View.INVISIBLE;
+            }
             listaFinal=helperFecha.fechasPasadas(ListaReservas);
 
             b=View.INVISIBLE;

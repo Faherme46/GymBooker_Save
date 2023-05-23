@@ -48,7 +48,7 @@ public class ReservasDiaActivity extends AppCompatActivity {
         listaFinal = new ArrayList<>();
         LoadData();
         fechadia = findViewById(R.id.fechaElegidaDiaCaja);
-        LoadData();
+
         fechadia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,8 +134,8 @@ public class ReservasDiaActivity extends AppCompatActivity {
                     eachReserva.setFecha((String) item.getValue().get("fecha"));
                     eachReserva.setDuracion((String) item.getValue().get("duracion"));
                     eachReserva.setEstado((double) item.getValue().get("estado"));
-                    eachReserva.setHoraIngreso((String) item.getValue().get("hIngreso"));
-                    eachReserva.setHoraSalida((String) item.getValue().get("hSalida"));
+                    eachReserva.setHoraIngreso((String) item.getValue().get("horaIngreso"));
+                    eachReserva.setHoraSalida((String) item.getValue().get("horaSalida"));
                     eachReserva.setRutina((String) item.getValue().get("rutina"));
                     ListaReservas.add(eachReserva);
                 }
