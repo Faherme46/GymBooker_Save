@@ -130,6 +130,7 @@ public class HelperToken {
     //Metodo que llama la lista de tokens y busca segun el token indicado
     public Tokens getTokenByToken(String token,ArrayList<Tokens> arrayList){
         //todo cambiar al metodo getTokens real
+        arrayList = getTokensDefault();
         for (Tokens j:
                 arrayList) {
             if(j.getTheToken().equals(token)){

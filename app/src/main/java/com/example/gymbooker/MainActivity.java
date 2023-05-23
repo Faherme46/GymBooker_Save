@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
 
 
-    private Button agendar,miEntreno,historial,config,reservas,usuarios,generar;
+    private Button agendar,miEntreno,historial,config,reservas,usuarios,generar,Logout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main_admin);
             startAdmin();
         }
-
     }
 
 
     private void startUser() {
+        Logout = findViewById(R.id.btn_logout);
         agendar = findViewById(R.id.btnReservasDia);
         agendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +94,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                SharedPreferences.Editor editor= preferences.edit();
+                editor.putInt("logged",0);
+                editor.apply();
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     private  void startAdmin(){
+        Logout = findViewById(R.id.btn_logout_admin);
         generar=findViewById(R.id.btnGenerarToken);
         generar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +152,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this, ReservasDiaActivity.class);
+                startActivity(i);
+            }
+        });
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                SharedPreferences.Editor editor= preferences.edit();
+                editor.putInt("logged",0);
+                editor.apply();
+                finish();
                 startActivity(i);
             }
         });
