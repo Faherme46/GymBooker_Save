@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextView txtnombre,txttelefono,txtcorreo,txtcedula,txtfnacimiento,txtApellido;
     private Button btmcontinuar;
+
+    private ImageView back;
+
     private FirebaseAuth mAuth;
     private BeginSignInRequest signInRequest;
 
@@ -82,6 +86,9 @@ public class RegisterActivity extends AppCompatActivity {
         txtcedula = findViewById(R.id.ed_cedula);
         txtfnacimiento = findViewById(R.id.ed_nacimiento);
         btmcontinuar = findViewById(R.id.btn_registrar);
+
+        back = findViewById(R.id.back_register);
+
         txtfnacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,8 +97,18 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
         //todo quitar metodo de datos por default
         setDatosPruebas();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(back);
+            }
+        });
+
     }
 
 
