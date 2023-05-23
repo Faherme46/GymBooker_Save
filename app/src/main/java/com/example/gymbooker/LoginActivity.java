@@ -50,26 +50,29 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("user", "user");
         editor.apply();
 
+        if(txtuser.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Ingrese el Token", Toast.LENGTH_SHORT).show();
+        }else {
+            String loginUser = txtuser.getText().toString();
+            Tokens t1 = helperToken.getTokenByToken(loginUser);
+            ArrayList<Tokens> tokensArrayList = helperToken.getTokens();
 
-        String loginUser = txtuser.getText().toString();
-        Tokens t1= helperToken.getTokenByToken(loginUser);
-        ArrayList<Tokens> tokensArrayList= helperToken.getTokens();
+            if (t1 != null) {
+                if (helperToken.getTokenByToken(loginUser).isUsed() == false) {
 
-        if (t1 != null) {
-            if (helperToken.getTokenByToken(loginUser).isUsed() == false) {
+                    Intent i = new Intent(this, com.example.gymbooker.User.RegisterActivity.class);
+                    i.putExtra("txtToken", loginUser);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Toast.makeText(this, "El token esta en uso", Toast.LENGTH_SHORT).show();
+                    txtuser.setError("!");
+                }
 
-                Intent i = new Intent(this, com.example.gymbooker.User.RegisterActivity.class);
-                i.putExtra("txtToken",loginUser);
-                startActivity(i);
-                finish();
+
             } else {
-                Toast.makeText(this, "El token esta en uso", Toast.LENGTH_SHORT).show();
-                txtuser.setError("!");
+                Toast.makeText(this, "El token no existe", Toast.LENGTH_SHORT).show();
             }
-
-
-        }else{
-            Toast.makeText(this, "El token no existe", Toast.LENGTH_SHORT).show();
         }
     }
 
