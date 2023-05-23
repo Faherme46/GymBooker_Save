@@ -36,6 +36,7 @@ public class HelperToken {
 
                     for (Map.Entry<String, Map> item : datos.entrySet()){
                         Tokens eachToken = new Tokens();
+                        eachToken.setId((String) item.getKey());
                         eachToken.setTheToken((String) item.getValue().get("theToken"));
                         eachToken.setfCreacion((String) item.getValue().get("fCreacion"));
                         eachToken.setLimited((double) item.getValue().get("isLimited"));
@@ -89,18 +90,19 @@ public class HelperToken {
         return tokensArrayList;
     }
 
-    /*public void updateToken(Tokens toUpdateToken){
+    public void updateToken(Tokens toUpdateToken){
 
         Retrofit myRetro = APIService.getInstancia();
         TokensService myTokensService = myRetro.create(TokensService.class);
-
-        myTokensService.editToken(toUpdateToken.getTheToken(),toUpdateToken).enqueue(new Callback<Object>() {
+        myTokensService.editToken(toUpdateToken.getId(),toUpdateToken).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("Token Actualizado","");
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
+                Log.d("Token Fallo el Actualizado","");
             }
         });
     }
@@ -112,23 +114,24 @@ public class HelperToken {
         Retrofit myRetro = APIService.getInstancia();
         TokensService myTokensService = myRetro.create(TokensService.class);
 
-        myTokensService.deleteToken(toDeleteToken.getTheToken()).enqueue(new Callback<Object>() {
+        myTokensService.deleteToken(toDeleteToken.getId()).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("Token Borrado","");
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
             }
         });
-    }*/
+    }
 
 
     //Metodo que llama la lista de tokens y busca segun el token indicado
-    public Tokens getTokenByToken(String token){
+    public Tokens getTokenByToken(String token,ArrayList<Tokens> arrayList){
         //todo cambiar al metodo getTokens real
         for (Tokens j:
-                getTokensDefault()) {
+                arrayList) {
             if(j.getTheToken().equals(token)){
                 return j;
             }

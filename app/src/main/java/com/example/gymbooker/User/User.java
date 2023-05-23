@@ -5,13 +5,13 @@ import java.io.StringReader;
 
 public class User implements Serializable {
 
-    private int isAdmin;
+    private String isAdmin;
     private String cedula,telefono;
     private String nombre, apellido,correo, fechaNacimiento, token;
 
     public User() {}
 
-    public User(int isAdmin, String cedula, String telefono, String nombre, String apellido, String correo, String fechaNacimiento, String token) {
+    public User(String  isAdmin, String cedula, String telefono, String nombre, String apellido, String correo, String fechaNacimiento, String token) {
         this.isAdmin = isAdmin;
         this.cedula = cedula;
         this.telefono = telefono;
@@ -22,11 +22,11 @@ public class User implements Serializable {
         this.token = token;
     }
 
-    public int getIsAdmin() {
+    public String getIsAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(int isAdmin) {
+    public void setIsAdmin(String isAdmin) {
         this.isAdmin = isAdmin;
     }
 

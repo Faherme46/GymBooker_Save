@@ -23,7 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtuser;
     private Button btnlogin;
     private SharedPreferences preferences;
-
+    private HelperToken helperToken = new HelperToken();
+    private ArrayList<Tokens> tokensArrayList = helperToken.getTokens();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public  void clickIniciar( View view) {
 
-        HelperToken helperToken = new HelperToken();
+
         SharedPreferences.Editor editor= preferences.edit();
         editor.putString("user", "user");
         editor.apply();
@@ -54,12 +55,10 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingrese el Token", Toast.LENGTH_SHORT).show();
         }else {
             String loginUser = txtuser.getText().toString();
-            Tokens t1 = helperToken.getTokenByToken(loginUser);
-            ArrayList<Tokens> tokensArrayList = helperToken.getTokens();
+            Tokens t1 = helperToken.getTokenByToken(loginUser,tokensArrayList);
 
             if (t1 != null) {
-                if (helperToken.getTokenByToken(loginUser).isUsed() == false) {
-
+                if (t1.isUsed() == false) {
                     Intent i = new Intent(this, com.example.gymbooker.User.RegisterActivity.class);
                     i.putExtra("txtToken", loginUser);
                     startActivity(i);
@@ -68,17 +67,15 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(this, "El token esta en uso", Toast.LENGTH_SHORT).show();
                     txtuser.setError("!");
                 }
-
-
             } else {
                 Toast.makeText(this, "El token no existe", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public void clickRegistro(View view){
+    public void clickAdmin(View view){
 
-        Intent i = new Intent(this, RegisterActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         SharedPreferences.Editor editor= preferences.edit();
         editor.putString("user", "admin");
         editor.apply();

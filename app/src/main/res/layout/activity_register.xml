@@ -110,13 +110,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/black"
         android:fontFamily="@font/kaushan_script"
         android:freezesText="true"
         android:hint="@string/FechaNacimiento"
-
+        android:background="@drawable/bordebotones"
         android:minHeight="48dp"
-        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

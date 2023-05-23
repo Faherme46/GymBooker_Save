@@ -18,10 +18,10 @@ public interface TokensService {
     @POST("Tokens.json")
     Call<Object> postToken(@Body Tokens miToken);
 
-    /*@PUT("Tokens.json/{key}.json")
+    @PUT("Tokens.json/{key}.json")
     Call<Object> editToken(@Path ("key") String id,@Body Tokens updatedToken);
 
     @DELETE("Tokens.json/{key}.json")
-    Call<Object> deleteToken(@Path ("key") String id);*/
+    Call<Object> deleteToken(@Path ("key") String id);
 
 }

@@ -18,6 +18,8 @@ public class UsuarioActivity extends AppCompatActivity {
     private User u;
     private TextView txtname,txtcc,txtfechanacimiento,txttelefono,txttotalreservas,txttoken,txtexpiracion;
     private Tokens token;
+    private HelperToken helperToken = new HelperToken();
+    private ArrayList<Tokens> arrayList=helperToken.getTokens();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,8 @@ public class UsuarioActivity extends AppCompatActivity {
             }
 
     public void getToken(){
-        HelperToken helperToken;
-        helperToken = new HelperToken();
-        token= helperToken.getTokenByToken(u.getToken());
+
+        token= helperToken.getTokenByToken(u.getToken(),arrayList);
     }
 
     public int setReservasTotales(){

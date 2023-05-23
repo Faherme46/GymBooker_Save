@@ -18,8 +18,9 @@ import com.example.gymbooker.R;
 import java.util.ArrayList;
 
 public class ReservasActivity extends AppCompatActivity {
-
-    private ArrayList<Reserva> ListaReservas,listaFinal,listaFiltrada;
+    HelperReservas helperReservas= new HelperReservas();
+    private ArrayList<Reserva> ListaReservas=helperReservas.getReservas();
+    private ArrayList<Reserva> listaFinal,listaFiltrada;
     private RecyclerView rvReservas;
     private TextView tv_misreservastitle;
     private int b;
@@ -29,7 +30,7 @@ public class ReservasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservas);
-
+        //Todo descomentar aqui
         LoadData();
 
         Intent i = getIntent();
@@ -80,8 +81,7 @@ public class ReservasActivity extends AppCompatActivity {
     }
 
     public void LoadData(){
-        HelperReservas helperReservas= new HelperReservas();
-        ListaReservas=helperReservas.getReservas();
+
         preferences=getSharedPreferences("gym-booker",MODE_PRIVATE);
         String cc=preferences.getString("ccUsuario","");
         listaFiltrada=new ArrayList<>();

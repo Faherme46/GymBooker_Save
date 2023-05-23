@@ -44,7 +44,8 @@
         </activity>
         <activity
             android:name=".AgendarActivity"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -54,7 +55,8 @@
             android:exported="false" />
         <activity
             android:name=".User.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".LoginActivity"/>
         <activity
             android:name=".LoginActivity"
 
