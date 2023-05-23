@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 public class ReservasDiaActivity extends AppCompatActivity {
     private ArrayList<Reserva> ListaReservas, listaFinal;
     private RecyclerView rvReservas;
-    private EditText fechadia;
+    private TextView fechadia;
     private String fechaElegida;
     private ReservasDiaAdapter myAdapter;
 
