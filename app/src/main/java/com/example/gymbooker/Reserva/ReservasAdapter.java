@@ -12,7 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gymbooker.HelperFecha;
 import com.example.gymbooker.R;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -25,8 +28,9 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHo
     private ConstraintLayout constraintLayout;
 
 
-    public void setDataSet(ArrayList<Reserva> dataSet, String cc) {
+    public void setDataSet(ArrayList<Reserva> dataSet, String cc, Boolean historial) {
         ArrayList<Reserva> listaFiltrada=new ArrayList<>();
+        ArrayList<Reserva> listaFinal=new ArrayList<>();
         //filtra por cedula del usuario
         for (Reserva r:
                 dataSet) {
@@ -34,7 +38,17 @@ public class ReservasAdapter extends RecyclerView.Adapter<ReservasAdapter.ViewHo
                 listaFiltrada.add(r);
             }
         }
-        DataSet = listaFiltrada;
+        //filtrar por fecha
+        HelperFecha helperFecha=new HelperFecha();
+        if (historial){
+            listaFinal=helperFecha.fechasPasadas(listaFiltrada);
+
+            b=View.INVISIBLE;
+        }else{
+            listaFinal=helperFecha.fechasFuturas(listaFiltrada);
+
+        }
+        DataSet = listaFinal;
         notifyDataSetChanged();
     }
 

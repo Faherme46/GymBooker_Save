@@ -106,7 +106,7 @@ public class HelperFecha {
         ArrayList<Reserva> futuras=new ArrayList<>();
         for (Reserva r : listReservas) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                if (fechaActual.isBefore(toLocalDate(r.getFecha()))) {
+                if (fechaActual.isBefore(toLocalDate(r.getFecha()))||fechaActual.isEqual(toLocalDate(r.getFecha()))) {
                     futuras.add(r);
                 }
             }
@@ -140,7 +140,21 @@ public class HelperFecha {
         DatePickerDialog datePickerDialog = new DatePickerDialog(et.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int año, int mes, int dia) {
-                String fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
+                String fechaSeleccionada=null;
+                if(mes<10) {
+                    if (dia<10) {
+                        fechaSeleccionada = año + "-0" + (mes + 1) + "-0" + dia;
+                    }else{
+                        fechaSeleccionada = año + "-0" + (mes + 1) + "-" + dia;
+                    }
+
+                }else{
+                    if (dia<10) {
+                        fechaSeleccionada = año + "-" + (mes + 1) + "-0" + dia;
+                    }else{
+                        fechaSeleccionada = año + "-" + (mes + 1) + "-" + dia;
+                    }
+                }
                 et.setText(fechaSeleccionada);
             }
 

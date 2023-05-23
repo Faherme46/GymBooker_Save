@@ -120,8 +120,9 @@ public class ReservasActivity extends AppCompatActivity {
                     eachReserva.setRutina((String) item.getValue().get("rutina"));
                     ListaReservas.add(eachReserva);
                 }
-
-                myAdapter.setDataSet(ListaReservas,cc);
+                Intent i= getIntent();
+                Boolean historial= i.getBooleanExtra("historial",false);
+                myAdapter.setDataSet(ListaReservas,cc,historial);
             }
 
             @Override
